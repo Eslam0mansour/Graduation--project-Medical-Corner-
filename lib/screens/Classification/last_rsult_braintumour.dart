@@ -1,0 +1,53 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
+
+class lastresultbrain extends StatefulWidget {
+  @override
+  _lastresult createState() => _lastresult();
+}
+
+class _lastresult extends State<lastresultbrain> {
+  ScrollController? _scrollController;
+  var top = 0.0;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _uid;
+  String? _userImageUrl;
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController?.addListener(() {
+      setState(() {});
+    });
+    getData();
+  }
+
+  void getData() async {
+    User? user = _auth.currentUser;
+    _uid = user?.uid;
+
+    final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+    if (userDoc == null) {
+      return;
+    } else {
+      setState(() {
+        _userImageUrl = userDoc.get('imageurl2');
+      });
+    }
+    // print("name $_name");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Image.network(
+            _userImageUrl??
+                'https://t3.ftcdn.net/jpg/01/83/55/76/240_F_183557656_DRcvOesmfDl5BIyhPKrcWANFKy2964i9.jpg'),
+      ),
+    );
+  }
+}
