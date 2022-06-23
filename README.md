@@ -4,7 +4,8 @@ Medical Corner is a medical application that detection of pneumonia and brain tu
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application.![5](https://user-images.githubusercontent.com/101331596/175432787-1c366bcf-3490-4471-a576-981481c959bd.jpg)
+
 
 A few resources to get you started if this is your first Flutter project:
 
