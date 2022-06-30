@@ -256,7 +256,7 @@ class Homepage extends StatelessWidget {
                                           vertical: 10.0,
                                         ),
                                         child: const Text(
-                                          'Heart Disease',
+                                          'Heart Disease ',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
