@@ -165,10 +165,10 @@ class _Sign_upState extends State<Sign_up> {
                                     'name': nameController.text,
                                     'uid' : user.uid,
                                     'email' : user.email,
-                                    'gender':genderController.text,
+                                    'gender': genderController.text,
                                     'imageurl' : null,
                                     'imageurl2' : null,
-
+                                    'password' : passwordController.text,
                                   });
                                 }
                                 else
@@ -196,7 +196,7 @@ class _Sign_upState extends State<Sign_up> {
                               )
                           ),
                       )
-                  ),// زرار sign in
+                  ),// زرار sign up
                   const SizedBox(
                     height: 10,
                   ),
