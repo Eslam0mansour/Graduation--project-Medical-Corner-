@@ -25,7 +25,7 @@ class _Sign_upState extends State<Sign_up> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.blueAccent.shade400,
+      backgroundColor: Color(0xff00B4D8),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -188,7 +188,7 @@ class _Sign_upState extends State<Sign_up> {
                               child: Center(
                                   child: Text('Sign up',
                                       style: TextStyle(
-                                          color: Colors.blue.shade500,
+                                          color: Color(0xff03045E),
                                           fontSize: 20,
                                           fontWeight:
                                           FontWeight.w800)

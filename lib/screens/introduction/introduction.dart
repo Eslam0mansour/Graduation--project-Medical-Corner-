@@ -14,13 +14,13 @@ class IntroductionPage extends StatefulWidget {
 class _IntroductionPageState extends State<IntroductionPage> {
   final images = <ImageProvider>[
     const AssetImage(
-      'images/22.jpg',
+      'images/33.jpg',
     ),
     const AssetImage(
       'images/11.jpg',
     ),
     const AssetImage(
-      'images/33.jpg',
+      'images/22.jpg',
     ),
   ];
 

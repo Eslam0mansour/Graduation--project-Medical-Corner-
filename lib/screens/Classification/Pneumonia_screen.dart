@@ -225,14 +225,14 @@ bool more3 = false;
                         mainAxisAlignment: MainAxisAlignment.center,
                         children:  [
                         const Text(
-                          'Medical Corner provides pneumonia detection ',
+                          'Medical Corner provides pneumonia',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.grey,
                           ),
                         ),
                         const Text(
-                          'with accuracy up to 91%.',
+                          'detection with accuracy up to 91%.',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.grey,

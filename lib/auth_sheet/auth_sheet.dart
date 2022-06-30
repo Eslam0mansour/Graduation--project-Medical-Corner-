@@ -112,9 +112,9 @@ class _AuthSheetState extends State<AuthSheet> {
                           onTap: () {
                             widget.expandCallback.call();
                           },
-                          child: const Text('Sign In',
+                          child: const Text('Sign in',
                               style: TextStyle(
-                                color: Colors.white ,
+                                color: Color(0xff03045E) ,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
                               ))),
@@ -229,7 +229,7 @@ class _AuthSheetState extends State<AuthSheet> {
                                     child: Center(
                                         child: Text('Sign in',
                                             style: TextStyle(
-                                                color: Colors.blue.shade500,
+                                                color: Color(0xff03045E),
                                                 fontSize: 20,
                                                 fontWeight:
                                                     FontWeight.w800)
@@ -295,8 +295,8 @@ class _AuthSheetState extends State<AuthSheet> {
                                   TextSpan(
                                     text: ' Register Now',
                                     style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w900,
+                                        color: Color(0xff03045E),
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 15
                                     ),
                                     recognizer: TapGestureRecognizer()..onTap = () {
@@ -321,12 +321,15 @@ class _AuthSheetState extends State<AuthSheet> {
                             maximumSize: Size(300,50),
                             minimumSize: Size(300,50),
                             primary: Colors.white,
-                            onPrimary: Colors.black,
+                            onPrimary: Color(0xff03045E),
                           ),
                           onPressed: () async {
                             await googleSignIn();
                           },
-                          icon: SvgPicture.asset("assets/googleicon.svg"),
+                          icon: SvgPicture.asset(
+                              "assets/googleicon.svg",
+                            height: 35,
+                          ),
                           label: const Text(
                             'Sign up with Google',
                             style: TextStyle(
