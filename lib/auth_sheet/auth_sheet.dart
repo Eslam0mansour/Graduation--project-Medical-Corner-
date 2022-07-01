@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -211,13 +212,25 @@ class _AuthSheetState extends State<AuthSheet> {
                                   onTap: () async {
                                  if (_formKeya.currentState!.validate()) {
                                      await authBase.login(_email, _password);
-                                     Navigator.push(
-                                       context,
-                                       MaterialPageRoute(
-                                         builder: (context) => Homepage() ,
-                                       ),
-                                     );
-                                     print('ok');
+                                     final user = FirebaseAuth.instance.currentUser;
+
+                                     if (user != null) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Homepage(),
+                                        ),
+                                      );
+                                      print('ok');
+                                    }
+                                     else {
+
+                                       final result = await showOkAlertDialog(
+                                         context: context,
+                                         title: 'Error',
+                                         message: 'you must enter a valid email and password.',
+                                       );
+                                     }
 
                                  }
                                     FocusScope.of(context).unfocus();

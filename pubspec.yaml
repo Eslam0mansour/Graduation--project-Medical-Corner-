@@ -55,6 +55,7 @@ dependencies:
   image_gallery_saver: ^1.7.1
   flutter_launcher_icons: ^0.9.2
   firebase_storage: ^10.2.16
+  adaptive_dialog: ^1.6.4+1
 
 dev_dependencies:
   flutter_test:
