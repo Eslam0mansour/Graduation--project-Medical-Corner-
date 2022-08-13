@@ -213,7 +213,6 @@ class _AuthSheetState extends State<AuthSheet> {
                                  if (_formKeya.currentState!.validate()) {
                                      await authBase.login(_email, _password);
                                      final user = FirebaseAuth.instance.currentUser;
-
                                      if (user != null) {
                                       Navigator.push(
                                         context,
@@ -224,7 +223,6 @@ class _AuthSheetState extends State<AuthSheet> {
                                       print('ok');
                                     }
                                      else {
-
                                        final result = await showOkAlertDialog(
                                          context: context,
                                          title: 'Error',

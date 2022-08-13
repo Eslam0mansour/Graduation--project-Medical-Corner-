@@ -146,12 +146,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     highlightColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     onTap: () {
-                      Navigator.push(
-                          context,
-                        MaterialPageRoute(
-                          builder: (context) => Homepage() ,
-                        ),
-                      );
+                      Navigator.pushNamed(context,'Home');
+
                     },
                     child: const Text(
                       'Skip',

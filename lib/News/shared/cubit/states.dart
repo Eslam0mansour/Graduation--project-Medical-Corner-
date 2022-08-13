@@ -3,6 +3,7 @@
  class ChangBottomBarIndix extends AppState{}
 
 class GetSrLodinState extends AppState{}
+class GetMore extends AppState{}
 class GetSrSuccSTate extends AppState{}
 class GetSrErorrState extends AppState{
    final String error;

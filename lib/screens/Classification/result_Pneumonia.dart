@@ -141,14 +141,17 @@ class _MyAppState extends State<Result> {
     });
     upload( File(_pickedImage!.path));
   }
+  // for upload to cloud
   Future upload( File imagee) async {
     final user = FirebaseAuth.instance.currentUser;
     final _id = user!.uid;
-    final ref = FirebaseStorage.instance.ref().child('userImages').child(_id+'.Pneumonia.jpg');
+    final ref = FirebaseStorage.instance.ref().
+    child('userImages').child(_id+'.Pneumonia.jpg');
     await ref.putFile(File(imagee.path));
     url = await ref.getDownloadURL();
     if( user != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+      await FirebaseFirestore.instance.collection('users').
+      doc(user.uid).update({
         'imageurl': url,
       });
       setState(() {

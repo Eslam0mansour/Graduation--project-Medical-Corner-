@@ -27,8 +27,9 @@ class _lastresult extends State<lastresultbrain> {
   void getData() async {
     User? user = _auth.currentUser;
     _uid = user?.uid;
-
-    final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
+      // to get Data from fire base
+    final DocumentSnapshot userDoc = await FirebaseFirestore.instance.
+    collection('users').doc(_uid).get();
     if (userDoc == null) {
       return;
     } else {

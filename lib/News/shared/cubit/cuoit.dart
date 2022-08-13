@@ -12,6 +12,7 @@ class AppCupit extends Cubit<AppState>{
   
   static AppCupit get(contixt)=>BlocProvider.of(contixt);
   var screens=const Hel();
+  bool more = false;
 
   List<dynamic> hel=[];
   void getHel(){
@@ -35,7 +36,10 @@ class AppCupit extends Cubit<AppState>{
      emit(GetHeSuccSTate());
     } 
   }
-
+void getmore(){
+  more = !more;
+  emit(GetMore());
+}
   var moodl=(CachHelper.getMood(key: "mood")==null)?true:CachHelper.getMood(key: "mood");
   void changMood(value){
     moodl=value;

@@ -3,6 +3,12 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intro_example/News/screens/homePage.dart';
+import 'package:intro_example/screens/Classification/Pneumonia_screen.dart';
+import 'package:intro_example/screens/Classification/brain_tumour.dart';
+import 'package:intro_example/screens/Predicition/Diabetes_screen.dart';
+import 'package:intro_example/screens/Predicition/Heart_screen.dart';
+import 'package:intro_example/screens/home.dart';
 import 'package:intro_example/screens/introduction/introduction.dart';
 import 'package:lottie/lottie.dart';
 import 'News/netWork/dio_helper.dart';
@@ -34,9 +40,18 @@ class MyApp extends StatelessWidget {
       child: BlocConsumer<AppCupit, AppState>(
         listener: (context, state) {},
         builder: (context, state) {
-          return const MaterialApp(
+          return  MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
+            initialRoute: 'splash',
+            routes: {
+              'splash' :(context) =>  SplashScreen(),
+              'Home' :(context) =>  Homepage(),
+              'n' :(context) =>  MyHomePage(),
+              'p' :(context) =>  PneumoniaScreen(),
+              'b' :(context) =>  BrainScreen(),
+              'd' :(context) =>  DiabetesScreen(),
+              'h' :(context) =>  HeartDisease(),
+            },
           );
         },
       ),
