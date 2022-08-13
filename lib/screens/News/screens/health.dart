@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../shared/components/componant.dart';
-import '../shared/cubit/cuoit.dart';
-import '../shared/cubit/states.dart';
+import '../../../components/news_component.dart';
+import '../../../shared/cubit/cubit.dart';
+import '../../../shared/cubit/states.dart';
+
 
 
 class Hel extends StatelessWidget {
@@ -10,10 +11,10 @@ class Hel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<AppCupit,AppState>(
+    return  BlocConsumer<AppCubit,AppState>(
       listener: (context,state){},
       builder: (context,state){
-        List mylist =AppCupit.get(context).hel;
+        List mylist =AppCubit.get(context).hel;
         if ((mylist.isEmpty)) {
           return const Center(child: CircularProgressIndicator(),);
         }else {

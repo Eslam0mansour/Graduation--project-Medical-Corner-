@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intro_example/News/shared/cubit/cuoit.dart';
-import 'package:intro_example/News/shared/cubit/states.dart';
+import 'package:intro_example/shared/cubit/cubit.dart';
+import 'package:intro_example/shared/cubit/states.dart';
 import 'package:intro_example/components/open_close_Text_box.dart';
 import 'package:intro_example/screens/Classification/result_Pneumonia.dart';
 import '../../Nvdrawer/Nvdrawer.dart';
@@ -12,7 +12,7 @@ class PneumoniaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCupit,AppState>(
+    return BlocConsumer<AppCubit,AppState>(
       listener: ( context, state) { },
       builder: ( context,  state) {
         return Scaffold(
@@ -21,7 +21,7 @@ class PneumoniaScreen extends StatelessWidget {
           ),
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
             leading:Builder(builder: (context) {
               return IconButton(
                 onPressed: () => Scaffold.of(context).openDrawer(),
@@ -61,7 +61,8 @@ class PneumoniaScreen extends StatelessWidget {
               ),
             ),],
           ),
-          body: SafeArea(
+          body: Container(
+            color: Colors.white,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

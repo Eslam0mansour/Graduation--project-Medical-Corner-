@@ -4,12 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intro_example/auth_sheet/forgotten.dart';
-import 'package:intro_example/auth_sheet/sign_up.dart';
+import 'package:intro_example/screens/introduction/auth_sheet/forgotten.dart';
+import 'package:intro_example/screens/introduction/auth_sheet/sign_up.dart';
 import 'package:intro_example/screens/introduction/components/paints/auth_sheet_paint/auth_sheet_paint.dart';
-import '../screens/home.dart';
-import '../services/auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../Network/services/auth.dart';
+import '../../home.dart';
 class AuthSheet extends StatefulWidget {
   final Function() expandCallback;
   bool isExpanded;

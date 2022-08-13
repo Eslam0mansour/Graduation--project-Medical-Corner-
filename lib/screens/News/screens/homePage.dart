@@ -2,32 +2,32 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../shared/cubit/cuoit.dart';
-import '../shared/cubit/states.dart';
+import '../../../shared/cubit/cubit.dart';
+import '../../../shared/cubit/states.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class NewsPage extends StatelessWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppCupit, AppState>(
+    return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
-        AppCupit cupit = AppCupit.get(context);
+        AppCubit cubit = AppCubit.get(context);
         return Scaffold(
-          body: cupit.screens,
+          body: cubit.screens,
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.refresh),
             onPressed: () {
-              cupit.hel = [];
-              cupit.getHel();
+              cubit.hel = [];
+              cubit.getHel();
               Future.delayed(const Duration(seconds: 1)).then(
                     (value) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      backgroundColor: cupit.mainColor,
+                      backgroundColor: Colors.blue,
                       content: Text(
-                        !(cupit.isEnglish)
+                        !(cubit.isEnglish)
                             ? "تم تحديث الاخبار بنجاح"
                             : "The News Has Been Updated Successfully",
                       ),

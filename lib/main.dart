@@ -3,20 +3,21 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intro_example/News/screens/homePage.dart';
 import 'package:intro_example/screens/Classification/Pneumonia_screen.dart';
 import 'package:intro_example/screens/Classification/brain_tumour.dart';
+import 'package:intro_example/screens/News/screens/homePage.dart';
 import 'package:intro_example/screens/Predicition/Diabetes_screen.dart';
 import 'package:intro_example/screens/Predicition/Heart_screen.dart';
 import 'package:intro_example/screens/home.dart';
 import 'package:intro_example/screens/introduction/introduction.dart';
+import 'package:intro_example/shared/cubit/cubit.dart';
+import 'package:intro_example/shared/cubit/observer.dart';
+import 'package:intro_example/shared/cubit/states.dart';
 import 'package:lottie/lottie.dart';
-import 'News/netWork/dio_helper.dart';
-import 'News/shared/components/shared_preferences.dart';
-import 'News/shared/cubit/cuoit.dart';
-import 'News/shared/cubit/observer.dart';
-import 'News/shared/cubit/states.dart';
+import 'shared/shared_preferences.dart';
 import 'package:page_transition/page_transition.dart';
+
+import 'netWork/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,33 +25,33 @@ void main() async {
   DioHelper.inti();
   await CachHelper.inti();
   BlocOverrides.runZoned(
-          () {runApp(MyApp(app: AppCupit()..getHel(),));},
+          () {runApp(MyApp(app: AppCubit()..getHel(),));},
       blocObserver: MyBlocObserver()
   );
 }
 
 class MyApp extends StatelessWidget {
-  final AppCupit app;
+  final AppCubit app;
 
   const MyApp({Key? key,required this.app}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return   BlocProvider<AppCupit>(
+    return   BlocProvider<AppCubit>(
       create: (context) => app,
-      child: BlocConsumer<AppCupit, AppState>(
+      child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
         builder: (context, state) {
           return  MaterialApp(
             debugShowCheckedModeBanner: false,
             initialRoute: 'splash',
             routes: {
-              'splash' :(context) =>  SplashScreen(),
-              'Home' :(context) =>  Homepage(),
-              'n' :(context) =>  MyHomePage(),
-              'p' :(context) =>  PneumoniaScreen(),
-              'b' :(context) =>  BrainScreen(),
-              'd' :(context) =>  DiabetesScreen(),
-              'h' :(context) =>  HeartDisease(),
+              'splash' :(context) =>  const SplashScreen(),
+              'Home' :(context) =>  const Homepage(),
+              'n' :(context) =>  const NewsPage(),
+              'p' :(context) =>  const PneumoniaScreen(),
+              'b' :(context) =>  const BrainScreen(),
+              'd' :(context) =>  const DiabetesScreen(),
+              'h' :(context) =>  const HeartDisease(),
             },
           );
         },

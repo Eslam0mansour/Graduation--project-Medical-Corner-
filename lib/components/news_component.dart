@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../cubit/cuoit.dart';
+import '../shared/cubit/cubit.dart';
+
 
 Widget slider(context) {
   return Padding(
@@ -10,7 +11,7 @@ Widget slider(context) {
         const SizedBox(height: 5),
         Container(
           height: 0.5,
-          color: AppCupit.get(context).mainColor,
+          color: Colors.blue,
         ),
         const SizedBox(height: 5)
       ],

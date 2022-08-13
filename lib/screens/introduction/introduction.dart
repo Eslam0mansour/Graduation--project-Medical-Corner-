@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intro_example/auth_sheet/auth_sheet.dart';
-import 'package:intro_example/screens/home.dart';
+import 'package:intro_example/screens/introduction/auth_sheet/auth_sheet.dart';
 import 'components/paints/desc_paint/desc_paint.dart';
-import 'components/widgets/indicators/indicators.dart';
 
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({Key? key}) : super(key: key);
@@ -12,29 +10,16 @@ class IntroductionPage extends StatefulWidget {
 }
 
 class _IntroductionPageState extends State<IntroductionPage> {
-  final images = <ImageProvider>[
-    const AssetImage(
-      'images/33.jpg',
-    ),
-    const AssetImage(
-      'images/11.jpg',
-    ),
-    const AssetImage(
-      'images/22.jpg',
-    ),
-  ];
-
-  late int currentImageIndex;
   late bool expandAuthSheet;
   late bool more;
 
   @override
   void initState() {
-    currentImageIndex = 0;
     expandAuthSheet = false;
     more = false;
     super.initState();
   }
+
   double postop =  0.8;
 
   void _topup(String pos)
@@ -72,9 +57,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     curve: Curves.easeIn,
                     width: deviceSize.width,
                     height: deviceSize.height * 0.6,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
-                            fit: BoxFit.cover, image: images[currentImageIndex]))),
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              'images/33.jpg',
+                            ),
+                        )
+                    )
+                ),
               ),
             ),
             Positioned(
@@ -90,15 +81,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
                         padding: const EdgeInsets.only(
                           top: 50,
                         ),
-                        child: Container(
+                        child: SizedBox(
                           width: deviceSize.width * 0.8,
                           height: deviceSize.height * 0.4,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Spacer(),
-                              const Text(
+                            children: const [
+                              Spacer(),
+                              Text(
                                   'Welcome to Medical Corner!',
                                   maxLines: 2,
                                   style: TextStyle(
@@ -108,24 +99,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
                                   )
 
                               ),
-                              const Spacer(),
-                              const Text(
+                              Spacer(),
+                              Text(
                                 'Medical Corner is a medical application that provides detection of pneumonia and brain tumour. It also provides prediction for heart disease, and diabetes.',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18,
                                 ),
                               ),
-                              const Spacer(),
-                              CustomPageIndicators(
-                                  maxPages: 3,
-                                  currentIndex: currentImageIndex,
-                                  onChangeCallback: (v) {
-                                    setState(() {
-                                      currentImageIndex = v;
-                                    });
-                                  }),
-                              const Spacer(),
+                              Spacer(),
                             ],
                           ),
                         ),
@@ -162,7 +144,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               ),
             ),
             AnimatedPositioned(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 400),
               top: deviceSize.height * postop,
               child: AuthSheet(
                   isExpanded: !expandAuthSheet,

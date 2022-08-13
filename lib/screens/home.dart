@@ -162,7 +162,6 @@ class Homepage extends StatelessWidget {
                         ),
                         onPressed: ()  {
                           Navigator.pushNamed(context,'n');
-
                         },
                         child: const Text(
                           'Top Health News',

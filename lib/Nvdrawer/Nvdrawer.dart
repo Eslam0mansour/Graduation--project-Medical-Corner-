@@ -5,7 +5,7 @@ import 'package:intro_example/screens/home.dart';
 import 'package:intro_example/screens/introduction/introduction.dart';
 import 'package:intro_example/Nvdrawer/profile.dart';
 
-import '../services/auth.dart';
+import '../netWork/services/auth.dart';
 
 class Nvdrawer extends StatelessWidget {
    Nvdrawer({Key? key}) : super(key: key);
