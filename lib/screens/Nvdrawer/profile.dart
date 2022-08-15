@@ -1,10 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import '../screens/introduction/introduction.dart';
-import 'Nvdrawer.dart';
 import 'package:intl/intl.dart';
 
 class Profile extends StatelessWidget {
@@ -21,68 +17,37 @@ class Profile extends StatelessWidget {
 
      if ( user?.displayName == null && email != null)
       {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            drawer:  Drawer(
-              child: Nvdrawer(),
+        return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: (){
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
             ),
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.white,
-              leading:
-              Builder(builder: (context) {
-                return IconButton(
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                  icon:SvgPicture.asset("assets/menu.svg"),
-
-                );
-              }),
-              title: Container(
-                height: 45,
-                width: 280,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 3.0,
-                  ),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
+            title: const Text(
+              'My profile',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'seguisb',
+                color: Color(0xff03045E),
               ),
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 5,
-                  ),
-                  child: Icon(
-                    Icons.notifications_none,
-                    color: Colors.black,
-                    size: 35,
-                  ),
-                ),
-              ],
             ),
-            body: FutureBuilder<DocumentSnapshot>(
+          ),
+          body: FutureBuilder<DocumentSnapshot>(
              future: users.doc(user!.uid).get(),
                builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot)
                {
             if (snapshot.hasError) {
-              return Text("Something went wrong");
+              return const Text("Something went wrong");
             }
 
             if (snapshot.hasData && !snapshot.data!.exists) {
-              return Text("Document does not exist");
+              return const Text("Document does not exist");
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
@@ -190,67 +155,34 @@ class Profile extends StatelessWidget {
                 ),
               );
             }
-
-            return Text("loading");
+            return const Center(child: CircularProgressIndicator(),);
           },
         ),
-          ),
         );
       }
     else if ( user?.displayName == null )
     {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          drawer:  Drawer(
-            child: Nvdrawer(),
+      return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
           ),
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            leading:
-            Builder(builder: (context) {
-              return IconButton(
-                onPressed: () => Scaffold.of(context).openDrawer(),
-                icon:SvgPicture.asset("assets/menu.svg"),
-
-              );
-            }),
-            title: Container(
-              height: 45,
-              width: 280,
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 3.0,
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
+          title: const Text(
+            'My profile',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'seguisb',
+              color: Color(0xff03045E),
             ),
-            actions: const [
-              Padding(
-                padding: EdgeInsets.only(
-                  right: 5,
-                ),
-                child: Icon(
-                  Icons.notifications_none,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-            ],
           ),
+        ),
           body: Padding(
             padding: const EdgeInsets.all(10),
             child: SingleChildScrollView(
@@ -281,15 +213,11 @@ class Profile extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              minimumSize: Size(300, 50),
+                              minimumSize: const Size(300, 50),
                           ),
                           onPressed: (){
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => IntroductionPage() ,
-                              ),
-                            );
+                            Navigator.pushNamed(context,'/intro');
+
                           },
                           child: const Text(
                             'sign in now ',
@@ -305,64 +233,32 @@ class Profile extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      );
+        );
     }
     else
       {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            drawer:  Drawer(
-              child: Nvdrawer(),
+        return  Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: (){
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
             ),
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.white,
-              leading:
-              Builder(builder: (context) {
-                return IconButton(
-                  onPressed: () => Scaffold.of(context).openDrawer(),
-                  icon:SvgPicture.asset("assets/menu.svg"),
-
-                );
-              }),
-              title: Container(
-                height: 45,
-                width: 280,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 3.0,
-                  ),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
+            title: const Text(
+              'My profile',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'seguisb',
+                color: Color(0xff03045E),
               ),
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: 5,
-                  ),
-                  child: Icon(
-                    Icons.notifications_none,
-                    color: Colors.black,
-                    size: 35,
-                  ),
-                ),
-              ],
             ),
-            body: Padding(
+          ),
+          body: Padding(
               padding: const EdgeInsets.all(10),
               child: SingleChildScrollView(
                 child: Column(
@@ -378,7 +274,7 @@ class Profile extends StatelessWidget {
                           ),
                           Text(
                             _name!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 38,
                               color: Colors.grey,
                               fontFamily: 'seguisb',
@@ -437,7 +333,7 @@ class Profile extends StatelessWidget {
                     ),
                     Text(
                       "Created in: ${DateFormat('MM/dd/yyyy').format(datea!)}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontFamily: 'seguisb',
 
@@ -450,8 +346,7 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        );
+          );
       }
   }
 }

@@ -1,65 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'Nvdrawer.dart';
+
 
 class Aboutus extends StatelessWidget {
   const Aboutus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        drawer:  Drawer(
-          child: Nvdrawer(),
+    return  Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
         ),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading:
-          Builder(builder: (context) {
-            return IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon:SvgPicture.asset("assets/menu.svg"),
-
-            );
-          }),
-          title: Container(
-            height: 45,
-            width: 280,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 3.0,
-              ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(
-                right: 5,
-              ),
-              child: Icon(
-                Icons.notifications_none,
-                color: Colors.black,
-                size: 35,
-              ),
-            ),
-          ],
-        ),
-        body: Column(
+      ),
+      body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children:  const [
             SizedBox(
@@ -107,7 +66,6 @@ class Aboutus extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

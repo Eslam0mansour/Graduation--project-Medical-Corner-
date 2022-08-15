@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intro_example/screens/Nvdrawer/Nvdrawer.dart';
 import '../components/Disease_card.dart';
-import '../Nvdrawer/Nvdrawer.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class Homepage extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'p');
+                              Navigator.pushNamed(context,'/p');
                             },
                             child: DiseaseCard(
                               image: 'a.jpg',
@@ -104,7 +104,7 @@ class Homepage extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'b');
+                              Navigator.pushNamed(context,'/b');
                             },
                             child: DiseaseCard(
                               image: 's.jpg',
@@ -131,7 +131,7 @@ class Homepage extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'h');
+                              Navigator.pushNamed(context,'/h');
                             },
                             child: DiseaseCard(
                               image: '1.jpg',
@@ -140,7 +140,7 @@ class Homepage extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: (){
-                              Navigator.pushNamed(context,'d');
+                              Navigator.pushNamed(context,'/d');
                             },
                             child: DiseaseCard(
                               image: '2.jpg',
@@ -161,7 +161,7 @@ class Homepage extends StatelessWidget {
                           primary: Colors.transparent,
                         ),
                         onPressed: ()  {
-                          Navigator.pushNamed(context,'n');
+                          Navigator.pushNamed(context,'/n');
                         },
                         child: const Text(
                           'Top Health News',

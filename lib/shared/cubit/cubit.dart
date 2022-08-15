@@ -49,6 +49,18 @@ void getmore(){
     }
     );
     print('english is $isEnglish');
+
+    var moodl=(
+        CachHelper.getMood(key: "mood")==null)?true:CachHelper.getMood(key: "mood");
+    void changMood(value){
+      moodl=value;
+      CachHelper.setMood(key: "mood", value: moodl).then((value) {
+        emit(Mood());
+      }
+      );
+      print('l mood is $isEnglish');
+    }
+
   }
 
 

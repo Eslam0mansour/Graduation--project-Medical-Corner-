@@ -43,6 +43,26 @@ class _lastresult extends State<lastresultbrain> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
+        ),
+        title: const Text(
+          'My last Result',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            fontFamily: 'seguisb',
+            color: Color(0xff03045E),
+          ),
+        ),
+      ),
       body: Container(
         alignment: Alignment.center,
         child: Image.network(

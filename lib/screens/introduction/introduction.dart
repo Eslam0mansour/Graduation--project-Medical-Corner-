@@ -119,17 +119,12 @@ class _IntroductionPageState extends State<IntroductionPage> {
               right: 12,
               top: 30,
               child: SizedBox(
-                width: 35,
-                height: 35,
+                width: 45,
+                height: 45,
                 child: Center(
                   child: InkWell(
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    focusColor: Colors.transparent,
                     onTap: () {
-                      Navigator.pushNamed(context,'Home');
-
+                      Navigator.pushNamed(context,'/Home');
                     },
                     child: const Text(
                       'Skip',

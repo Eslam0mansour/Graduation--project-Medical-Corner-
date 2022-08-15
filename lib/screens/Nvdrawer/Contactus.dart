@@ -1,74 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'Nvdrawer.dart';
 
 class Contactus extends StatelessWidget {
   const Contactus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        drawer:  Drawer(
-          child: Nvdrawer(),
+    return  Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
         ),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading:
-          Builder(builder: (context) {
-            return IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon:SvgPicture.asset("assets/menu.svg"),
-
-            );
-          }),
-          title: Container(
-            height: 45,
-            width: 280,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 3.0,
-              ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          actions: const [
-            Padding(
-              padding: EdgeInsets.only(
-                right: 5,
-              ),
-              child: Icon(
-                Icons.notifications_none,
-                color: Colors.black,
-                size: 35,
-              ),
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
+      ),
+      body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children:    [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Center(
-                child: Text(
+              const Center(
+                child: const Text(
                   'Got any questions?',
                   style: TextStyle(
                     fontSize: 25,
@@ -78,11 +36,11 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Center(
-                child: Text(
+              const Center(
+                child: const Text(
                   'You can send us a message regarding any',
                   style: TextStyle(
                     fontSize: 19,
@@ -91,7 +49,7 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              Center(
+              const Center(
                 child: Text(
                   'general information.',
                   style: TextStyle(
@@ -101,14 +59,14 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: const Text(
                   'Email',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 27,
                     fontFamily: 'seguisb',
                     color: Colors.black,
@@ -116,8 +74,8 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: TextField(
                   keyboardType:TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -128,7 +86,7 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Padding(
@@ -173,14 +131,13 @@ class Contactus extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
 
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

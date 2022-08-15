@@ -16,4 +16,6 @@ class GetHeErorrState extends AppState{
   GetHeErorrState(this.error);
  }
 
+ class Mood extends AppState{}
  class ChangLange extends AppState{}
+ class ChangColor extends AppState{}

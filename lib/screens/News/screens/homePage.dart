@@ -15,6 +15,26 @@ class NewsPage extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: (){
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
+            ),
+            title: const Text(
+              'On Time Health News',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'seguisb',
+                color: Colors.blueAccent,
+              ),
+            ),
+          ),
           body: cubit.screens,
           floatingActionButton: FloatingActionButton(
             child: const Icon(Icons.refresh),

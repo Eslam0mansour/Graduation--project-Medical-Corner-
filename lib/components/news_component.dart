@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../shared/cubit/cubit.dart';
-
-
 Widget slider(context) {
   return Padding(
     padding: const EdgeInsetsDirectional.only(end: 20),
@@ -105,7 +102,3 @@ Widget myList(List artical, context) {
     itemCount: artical.length,
   );
 }
-
-void navigatorTo(context, widget)
-=> Navigator.push(context, MaterialPageRoute(builder: (context)
-    => widget));

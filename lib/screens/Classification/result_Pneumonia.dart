@@ -46,6 +46,26 @@ class _MyAppState extends State<Result> {
       controller: controllerr,
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_rounded , size: 30, color: Colors.black,),
+          ),
+          title: const Text(
+            'My Detection Lap',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'seguisb',
+              color: Color(0xff03045E),
+            ),
+          ),
+        ),
         body: _loading
             ? Container(
           alignment: Alignment.center,
@@ -121,6 +141,9 @@ class _MyAppState extends State<Result> {
       ),
     );
   }
+
+
+
   Future pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;

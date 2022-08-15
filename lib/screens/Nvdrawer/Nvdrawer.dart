@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intro_example/Nvdrawer/Contactus.dart';
-import 'package:intro_example/Nvdrawer/aboutus.dart';
-import 'package:intro_example/screens/home.dart';
-import 'package:intro_example/screens/introduction/introduction.dart';
-import 'package:intro_example/Nvdrawer/profile.dart';
 
-import '../netWork/services/auth.dart';
+import '../../Network/services/auth.dart';
 
 class Nvdrawer extends StatelessWidget {
    Nvdrawer({Key? key}) : super(key: key);
@@ -38,7 +33,7 @@ class Nvdrawer extends StatelessWidget {
                   ),
                   Builder(builder: (context) {
                     return IconButton(
-                      onPressed: () => Scaffold.of(context).openEndDrawer(),
+                      onPressed: () => Scaffold.of(context).closeDrawer(),
                       icon: const Icon(
                           Icons.close,
                         color: Colors.white,
@@ -62,12 +57,8 @@ class Nvdrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Profile() ,
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/profile');
+                  Scaffold.of(context).closeDrawer();
                 },
                 child: Row(
                   children: const [
@@ -97,12 +88,8 @@ class Nvdrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Homepage() ,
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/Home');
+                  Scaffold.of(context).closeDrawer();
                 },
                 child: Row(
                   children: const [
@@ -132,12 +119,8 @@ class Nvdrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Aboutus() ,
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/about');
+                  Scaffold.of(context).closeDrawer();
                 },
                 child: Row(
                   children: const [
@@ -167,12 +150,9 @@ class Nvdrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Contactus() ,
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/contact');
+                  Scaffold.of(context).closeDrawer();
+
                 },
                 child: Row(
                   children: const [
@@ -203,12 +183,7 @@ class Nvdrawer extends StatelessWidget {
               InkWell(
                 onTap: () async {
                   authBase.logout();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => IntroductionPage() ,
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/intro');
                 },
                 child: Row(
                   children: const [
