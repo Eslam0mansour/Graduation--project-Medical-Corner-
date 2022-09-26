@@ -1,5 +1,5 @@
 # Medical Corner
-
+.
 Medical Corner is a medical application that detection of pneumonia and brain tumour. It also provides prediction for heart disease, and diabetes. using deep learning model
  
 ## Getting Started 
