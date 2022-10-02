@@ -1,14 +1,11 @@
-# Medical Corner
+# Medical Corner Flutter App  >>>>> 
 .
-Medical Corner is a medical application that detection of pneumonia and brain tumour. It also provides prediction for heart disease, and diabetes. using deep learning model
+Medical Corner is a medical application that detection of pneumonia and brain tumour, 
+It also provides prediction for heart disease, and diabetes. using deep learning model.
  
+
+https://user-images.githubusercontent.com/101331596/193475855-235b8b5f-26fc-495d-a334-56c2a1a78419.mp4
+
+
 ## Getting Started 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
