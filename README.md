@@ -4,8 +4,12 @@
 It also provides prediction for heart disease, and diabetes. using deep learning model.
  
 
-https://user-images.githubusercontent.com/101331596/193475855-235b8b5f-26fc-495d-a334-56c2a1a78419.mp4
+https://user-images.githubusercontent.com/101331596/210183460-a9aace73-0759-4a25-9dc6-acfc45e3684c.mp4
 
 
 ## Getting Started 
+
+
+
+
 
