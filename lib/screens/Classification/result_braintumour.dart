@@ -186,7 +186,7 @@ class _MyAppState extends State<ResultBrain> {
 
   Future<String>  save(Uint8List bytes) async {
     await [Permission.storage].request();
-    final name = 'result of Xray';
+    const name = 'result of Xray';
     final result = await ImageGallerySaver.saveImage(bytes , name : name);
     return result['filepath'];
   }

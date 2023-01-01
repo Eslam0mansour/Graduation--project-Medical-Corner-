@@ -42,16 +42,7 @@ class _AuthSheetState extends State<AuthSheet> {
     final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
     if(googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication
-      = await googleSignInAccount.authentication;
-      final AuthCredential authCredential
-      = GoogleAuthProvider.credential(
-        idToken: googleSignInAuthentication.idToken,
-        accessToken: googleSignInAuthentication.accessToken,
-      );
 
-      UserCredential userCredential = await auth.signInWithCredential(authCredential);
-      User? user = userCredential.user;
       final userr = FirebaseAuth.instance.currentUser;
       final _store = FirebaseFirestore.instance;
 
@@ -71,7 +62,7 @@ class _AuthSheetState extends State<AuthSheet> {
         print('try later ');
       }
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) =>  Homepage())
+          MaterialPageRoute(builder: (context) =>  const Homepage())
       );
     }
   }
@@ -218,13 +209,13 @@ class _AuthSheetState extends State<AuthSheet> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Homepage(),
+                                          builder: (context) => const Homepage(),
                                         ),
                                       );
                                       print('ok');
                                     }
                                      else {
-                                       final result = await showOkAlertDialog(
+                                        showOkAlertDialog(
                                          context: context,
                                          title: 'Error',
                                          message: 'you must enter a valid email and password.',
@@ -238,7 +229,7 @@ class _AuthSheetState extends State<AuthSheet> {
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
-                                    child: Center(
+                                    child: const Center(
                                         child: Text('Sign in',
                                             style: TextStyle(
                                                 color: Color(0xff03045E),
@@ -316,7 +307,7 @@ class _AuthSheetState extends State<AuthSheet> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Sign_up() ,
+                                          builder: (context) => const Sign_up() ,
                                         ),
                                       );
                                     },
@@ -330,10 +321,10 @@ class _AuthSheetState extends State<AuthSheet> {
                         ),
                         ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                            maximumSize: Size(300,50),
-                            minimumSize: Size(300,50),
-                            primary: Colors.white,
-                            onPrimary: Color(0xff03045E),
+                            foregroundColor: const Color(0xff03045E),
+                            backgroundColor: Colors.white,
+                            maximumSize: const Size(300,50),
+                            minimumSize: const Size(300,50),
                           ),
                           onPressed: () async {
                             await googleSignIn();

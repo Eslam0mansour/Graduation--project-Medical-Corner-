@@ -24,7 +24,7 @@ class _Sign_upState extends State<Sign_up> {
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xff00B4D8),
+      backgroundColor: const Color(0xff00B4D8),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -178,13 +178,13 @@ class _Sign_upState extends State<Sign_up> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Homepage() ,
+                                    builder: (context) => const Homepage() ,
                                   ),
                                 );
                               }
                               FocusScope.of(context).unfocus();
                             },
-                              child: Center(
+                              child: const Center(
                                   child: Text('Sign up',
                                       style: TextStyle(
                                           color: Color(0xff03045E),

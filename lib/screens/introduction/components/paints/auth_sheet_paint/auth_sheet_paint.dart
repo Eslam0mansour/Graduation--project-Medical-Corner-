@@ -7,7 +7,7 @@ class AuthSheetPaint extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Color(0xff00B4D8)
+      ..color = const Color(0xff00B4D8)
       ..style = PaintingStyle.fill
       ..strokeWidth = 0;
 

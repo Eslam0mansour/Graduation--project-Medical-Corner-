@@ -8,9 +8,6 @@ class BrainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool more1 = false ;
-    bool more2 = false;
-    bool more3 = false;
     return Scaffold(
         appBar: AppBar(
           elevation: 0,

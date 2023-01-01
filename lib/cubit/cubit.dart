@@ -2,17 +2,16 @@
 import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intro_example/shared/cubit/states.dart';
+import 'package:intro_example/cubit/states.dart';
 import 'package:tflite/tflite.dart';
 import '../../../netWork/dio_helper.dart';
-import '../shared_preferences.dart';
-import '../../screens/News/screens/health.dart';
+
 
 class AppCubit extends Cubit<AppState>{
   AppCubit():super(IntiAppState());
   
   static AppCubit get(contixt)=>BlocProvider.of(contixt);
-  ////////////
+
   late List? outputs;
   File? iimage;
   late bool loading = true;
@@ -53,7 +52,6 @@ class AppCubit extends Cubit<AppState>{
     outputs = output!;
     emit(FinalResultState());
   }
-/////////
 
   List<dynamic> hel=[];
   void getHel(){
@@ -70,44 +68,11 @@ class AppCubit extends Cubit<AppState>{
             hel=value.data['articles'];
             emit(GetHeSuccSTate());
           }).catchError((onError){
-            print('the erorr is ${onError.toString()}');
+            print('the error is ${onError.toString()}');
             emit(GetHeErorrState(onError.toString()));
           });
     }else{
      emit(GetHeSuccSTate());
     } 
   }
-
-
-void getmore({bool? m}){
-          m != m ;
-  emit(GetMore());
-}
-
-  var isEnglish=(
-      CachHelper.getLan(key:"lan")==null)?true:CachHelper.getLan(key: "lan");
-  void changLang(value){
-    isEnglish=value;
-    CachHelper.setLan(key: "lan", value: isEnglish).then((value)
-    {
-      emit(ChangLange());
-    }
-    );
-    print('english is $isEnglish');
-
-    // var moodl=(
-    //     CachHelper.getMood(key: "mood")==null)
-    //     ?true:CachHelper.getMood(key: "mood");
-    // void changMood(value){
-    //   moodl=value;
-    //   CachHelper.setMood(key: "mood", value: moodl).then((value) {
-    //     emit(Mood());
-    //   }
-    //   );
-    //   print('l mood is $isEnglish');
-    // }
-
-  }
-
-
 }

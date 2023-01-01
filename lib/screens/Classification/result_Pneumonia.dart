@@ -1,17 +1,12 @@
-import 'dart:io';
+
 import 'dart:typed_data';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intro_example/shared/cubit/cubit.dart';
-import 'package:intro_example/shared/cubit/states.dart';
+import 'package:intro_example/cubit/cubit.dart';
+import 'package:intro_example/cubit/states.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:tflite/tflite.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../components/result_with_output.dart';
@@ -51,7 +46,7 @@ class Result extends StatelessWidget {
             body: cubit.loading
                 ? Container(
               alignment: Alignment.center,
-              child: CircularProgressIndicator(),
+              child: const CircularProgressIndicator(),
             )
                 : Container(
               alignment: Alignment.center,
@@ -64,20 +59,21 @@ class Result extends StatelessWidget {
                   children: [
                     cubit.iimage == null ? Container(
                       child: Lottie.asset('assets/3.json'),
-                    ) : Result1(),
+                    ) : const Result1(),
                     cubit.iimage == null ? Container() : Padding(
                       padding: const EdgeInsets.only(
                           top: 30
                       ),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          minimumSize: Size(200, 50),
+                          minimumSize: const Size(200, 50),
                         ),
                         onPressed: () async {
-                          // final imageee = await controllerr.captureFromWidget(Result1());
-                          // if (imageee == null)
-                          //   return ;
-                          // await save(imageee);
+                          final imageee = await controllerr.captureFromWidget(const Result1());
+                          if (imageee == null) {
+                            return ;
+                          }
+                          await save(imageee);
                         },
                         child: const Text(
                           'save result to the Gallery',
@@ -87,12 +83,12 @@ class Result extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     cubit.iimage == null ? Container() : ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: Size(200, 50),
+                        minimumSize: const Size(200, 50),
                       ),
                       onPressed: (){},
                       child: const Text(
@@ -102,7 +98,7 @@ class Result extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     cubit.iimage == null ? Container() : const Text(
@@ -120,7 +116,7 @@ class Result extends StatelessWidget {
               onPressed: (){
                 cubit.pickImage();
               },
-              child: Icon(Icons.image),
+              child: const Icon(Icons.image),
             ),
           ),
         );
@@ -184,13 +180,13 @@ class Result extends StatelessWidget {
   //     print('erorrrrrr');
   //   }
   // }
-  //  Future<String>  save(Uint8List bytes) async
-  //  {
-  //    await [Permission.storage].request();
-  //    final name = 'result of Xray';
-  //    final result = await ImageGallerySaver.saveImage(bytes , name : name);
-  //    return result['filepath'];
-  // }
+   Future<String>  save(Uint8List bytes) async
+   {
+     await [Permission.storage].request();
+     const name = 'result of Xray';
+     final result = await ImageGallerySaver.saveImage(bytes , name : name);
+     return result['filepath'];
+  }
   // loadModel() async {
   //   await Tflite.loadModel(
   //     model: "assets/model.tflite",

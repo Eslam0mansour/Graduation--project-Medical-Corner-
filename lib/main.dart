@@ -2,17 +2,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intro_example/router/app_router.dart';
-import 'package:intro_example/shared/cubit/cubit.dart';
-import 'package:intro_example/shared/cubit/observer.dart';
-import 'package:intro_example/shared/cubit/states.dart';
-import 'shared/shared_preferences.dart';
+import 'package:intro_example/cubit/observer.dart';
+import 'package:intro_example/cubit/states.dart';
+import 'cubit/cubit.dart';
 import 'netWork/dio_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   DioHelper.inti();
-  await CachHelper.inti();
   BlocOverrides.runZoned(
           () {runApp(MyApp(app: AppCubit()..getHel(),));},
       blocObserver: MyBlocObserver()

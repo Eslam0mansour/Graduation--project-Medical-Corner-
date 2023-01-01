@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intro_example/shared/cubit/cubit.dart';
-import 'package:intro_example/shared/cubit/states.dart';
+import 'package:intro_example/cubit/cubit.dart';
+import 'package:intro_example/cubit/states.dart';
 import '../../../components/news_component.dart';
 
 class NewsPage extends StatelessWidget {
@@ -43,12 +43,10 @@ class NewsPage extends StatelessWidget {
               Future.delayed(const Duration(seconds: 1)).then(
                     (value) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       backgroundColor: Colors.blue,
                       content: Text(
-                        !(cubit.isEnglish)
-                            ? "تم تحديث الاخبار بنجاح"
-                            : "The News Has Been Updated Successfully",
+                         "The News Has Been Updated Successfully",
                       ),
                     ),
                   );

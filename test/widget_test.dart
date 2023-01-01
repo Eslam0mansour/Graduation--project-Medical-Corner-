@@ -6,8 +6,8 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intro_example/cubit/cubit.dart';
 import 'package:intro_example/main.dart';
-import 'package:intro_example/shared/cubit/cubit.dart';
 
 void main() {
   testWidgets('test', (WidgetTester tester) async {

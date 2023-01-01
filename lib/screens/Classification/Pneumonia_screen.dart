@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intro_example/shared/cubit/cubit.dart';
-import 'package:intro_example/shared/cubit/states.dart';
+import 'package:intro_example/cubit/cubit.dart';
+import 'package:intro_example/cubit/states.dart';
 import 'package:intro_example/components/open_close_Text_box.dart';
 import 'package:intro_example/screens/Classification/result_Pneumonia.dart';
 import 'last_rsult_pneumonia.dart';

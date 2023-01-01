@@ -1,20 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 
-class Userr{
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+
+class User1{
   final String uid;
 
-  Userr({required this.uid});
+  User1({required this.uid});
 }
 
 class AuthBase {
 
-  Future<Userr?> login(String email, String password) async {
+  Future<User1?> login(String email, String password) async {
     try {
        await FirebaseAuth.instance.signInWithEmailAndPassword
          (email: email, password: password);
     }
     catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return null;
     }
     return null;

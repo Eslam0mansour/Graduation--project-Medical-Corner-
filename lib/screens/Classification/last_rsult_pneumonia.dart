@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 
 class lastresult extends StatefulWidget {
+  const lastresult({Key? key}) : super(key: key);
+
   @override
   _lastresult createState() => _lastresult();
 }

@@ -10,7 +10,7 @@ import 'package:intro_example/screens/Prediction/Heart_screen.dart';
 import 'package:intro_example/screens/home.dart';
 import 'package:intro_example/screens/introduction/introduction.dart';
 import 'package:intro_example/screens/splash.dart';
-import 'package:intro_example/router/screens_Names.dart' as screens;
+import 'package:intro_example/const/screens_Names.dart' as screens;
 
 import '../screens/News/screens/health.dart';
 
