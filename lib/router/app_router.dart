@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:intro_example/router/custom_page_route.dart';
 import 'package:intro_example/screens/Classification/Pneumonia_screen.dart';
@@ -31,21 +29,29 @@ class AppRouter {
       case screens.introductionPage:
         return MaterialPageRoute(builder: (_) => const IntroductionPage());
       case screens.newsPage:
-        return MaterialPageRoute(builder: (_) => const NewsPage());
+        return CustomPageRoute(
+            direction: AxisDirection.up, child: const NewsPage());
       case screens.pneumoniaScreen:
-        return MaterialPageRoute(builder: (_) => const PneumoniaScreen());
+        return CustomPageRoute(
+            direction: AxisDirection.left, child: const PneumoniaScreen());
       case screens.brainScreen:
-        return MaterialPageRoute(builder: (_) => const BrainScreen());
+        return CustomPageRoute(
+            direction: AxisDirection.left, child: const BrainScreen());
       case screens.diabetesScreen:
-        return MaterialPageRoute(builder: (_) => const DiabetesScreen());
+        return CustomPageRoute(
+            direction: AxisDirection.left, child: const DiabetesScreen());
       case screens.heartDisease:
-        return MaterialPageRoute(builder: (_) => const HeartDisease());
+        return CustomPageRoute(
+            direction: AxisDirection.left, child: const HeartDisease());
       case screens.profile:
-        return MaterialPageRoute(builder: (_) =>  Profile());
+        return CustomPageRoute(
+            direction: AxisDirection.right, child: Profile());
       case screens.aboutus:
-        return MaterialPageRoute(builder: (_) => const Aboutus());
+        return CustomPageRoute(
+            direction: AxisDirection.right, child: const Aboutus());
       case screens.contactus:
-        return MaterialPageRoute(builder: (_) => const Contactus());
+        return CustomPageRoute(
+            direction: AxisDirection.right, child: const Contactus());
       default:
         return null;
     }
