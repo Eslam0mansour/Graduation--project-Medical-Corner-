@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_print
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intro_example/shared/cubit/states.dart';
+import 'package:tflite/tflite.dart';
 import '../../../netWork/dio_helper.dart';
 import '../shared_preferences.dart';
 import '../../screens/News/screens/health.dart';
@@ -9,8 +12,48 @@ class AppCubit extends Cubit<AppState>{
   AppCubit():super(IntiAppState());
   
   static AppCubit get(contixt)=>BlocProvider.of(contixt);
-  var screens=const Hel();
-  bool more = false;
+  ////////////
+  late List? outputs;
+  File? iimage;
+  late bool loading = true;
+  final ImagePicker _picker = ImagePicker();
+
+  Future loadModel() async {
+    Tflite.close();
+    emit(ModelLodedSTate());
+    await Tflite.loadModel(
+      model: "assets/model.tflite",
+      labels: "assets/labels.txt",
+
+    ).then((value) {
+      loading = false;
+      emit(ModelLodedSTate());
+
+    });
+  }
+  Future pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return null;
+    loading = true;
+    iimage  = File(image.path)  ;
+    emit(pickedState());
+    classifyImage(File(image.path));
+    emit(ClassifyState());
+  }
+  void classifyImage( File image ) async {
+    var output = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 1,
+        threshold: 0.2,
+        imageMean: 0.0,
+        imageStd: 180.0,
+        asynch: true
+    );
+    loading = false;
+    outputs = output!;
+    emit(FinalResultState());
+  }
+/////////
 
   List<dynamic> hel=[];
   void getHel(){
@@ -34,8 +77,10 @@ class AppCubit extends Cubit<AppState>{
      emit(GetHeSuccSTate());
     } 
   }
-void getmore(){
-  more = !more;
+
+
+void getmore({bool? m}){
+          m != m ;
   emit(GetMore());
 }
 
@@ -50,16 +95,17 @@ void getmore(){
     );
     print('english is $isEnglish');
 
-    var moodl=(
-        CachHelper.getMood(key: "mood")==null)?true:CachHelper.getMood(key: "mood");
-    void changMood(value){
-      moodl=value;
-      CachHelper.setMood(key: "mood", value: moodl).then((value) {
-        emit(Mood());
-      }
-      );
-      print('l mood is $isEnglish');
-    }
+    // var moodl=(
+    //     CachHelper.getMood(key: "mood")==null)
+    //     ?true:CachHelper.getMood(key: "mood");
+    // void changMood(value){
+    //   moodl=value;
+    //   CachHelper.setMood(key: "mood", value: moodl).then((value) {
+    //     emit(Mood());
+    //   }
+    //   );
+    //   print('l mood is $isEnglish');
+    // }
 
   }
 

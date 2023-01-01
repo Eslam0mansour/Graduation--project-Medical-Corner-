@@ -105,12 +105,12 @@ class _MyAppState extends State<ResultBrain> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 _image == null ? Container() : ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(200, 50),
+                    minimumSize: const Size(200, 50),
                   ),
                   onPressed: pickImagetocloud,
                   child: const Text(
@@ -120,7 +120,7 @@ class _MyAppState extends State<ResultBrain> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 _image == null ? Container() : const Text(
@@ -141,6 +141,8 @@ class _MyAppState extends State<ResultBrain> {
       ),
     );
   }
+
+
   Future pickImage() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;
@@ -150,6 +152,7 @@ class _MyAppState extends State<ResultBrain> {
     });
     classifyImage(File(image.path));
   }
+
   Future pickImagetocloud() async {
     final picker = ImagePicker();
     final pickedImage = await picker.getImage(source: ImageSource.gallery);
@@ -161,6 +164,7 @@ class _MyAppState extends State<ResultBrain> {
     });
     upload( File(_pickedImage!.path));
   }
+
   Future upload( File imagee) async {
     final user = FirebaseAuth.instance.currentUser;
     final _id = user!.uid;
@@ -180,8 +184,7 @@ class _MyAppState extends State<ResultBrain> {
     }
   }
 
-  Future<String>  save(Uint8List bytes) async
-  {
+  Future<String>  save(Uint8List bytes) async {
     await [Permission.storage].request();
     final name = 'result of Xray';
     final result = await ImageGallerySaver.saveImage(bytes , name : name);
@@ -235,7 +238,6 @@ loadModel() async {
     await Tflite.loadModel(
       model: "assets/model_brain_tumour.tflite",
       labels: "assets/labels_brain_tumour.txt",
-
     );
   }
 

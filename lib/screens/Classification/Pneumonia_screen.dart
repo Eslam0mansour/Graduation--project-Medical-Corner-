@@ -5,14 +5,22 @@ import 'package:intro_example/shared/cubit/states.dart';
 import 'package:intro_example/components/open_close_Text_box.dart';
 import 'package:intro_example/screens/Classification/result_Pneumonia.dart';
 import 'last_rsult_pneumonia.dart';
+
 class PneumoniaScreen extends StatelessWidget {
+
   const PneumoniaScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<AppCubit,AppState>(
       listener: ( context, state) { },
       builder: ( context,  state) {
+        AppCubit cubit = AppCubit.get(context);
+        bool more1 = false ;
+        bool more2 = false;
+        bool more3 = false;
+
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -58,9 +66,6 @@ class PneumoniaScreen extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(
-                      height: 9,
-                    ),
                     const Text(
                       'Pneumonia is an air infection that inflames the air sacs in one or both lungs. The air sacs may fill with fluid or pus, causing cough, phlegm or pus, fever, chills, and difficulty breathing.',
                       style: TextStyle(
@@ -74,39 +79,24 @@ class PneumoniaScreen extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              right: 10
-                          ),
-                          child: OpenCloseTextBox(
-                            text: '- Chest pain when you breathe orcough \n- Confusion or changes in mental \n- awareness \n- Cough \n- Fatigue\n- Lower than normal body temperature\n- Nausea, vomiting or diarrhea\n- Shortness of breath',
-                            title: 'Symptoms',
-                          ),
+                        OpenCloseTextBox(
+                          text: '- Chest pain when you breathe orcough \n- Confusion or changes in mental \n- awareness \n- Cough \n- Fatigue\n- Lower than normal body temperature\n- Nausea, vomiting or diarrhea\n- Shortness of breath',
+                          title: 'Symptoms',
+                          clr: Colors.blue,
+                          txtclr: Colors.white,
                         ),
-
-                        //       'Causes',
-                        //   child: buildText2(
-                        //         'Many germs can cause pneumonia. The'
-                        //             'most common are bacteria and viruses in'
-                        //             'the air we breathe. Your body usually'
-                        //             'prevents these germs from infecting your'
-                        //             'lungs. But sometimes these germs can'
-                        //             'overpower your immune system, even if'
-                        //             'your health is generally good.'
-                        //             'Pneumonia is classified according to the'
-                        //             ' Types of germs that cause it and where'
-                        //             'you got the infection.'
-                        //             '          Community-acquired pneumonia'
-                        //             '                - Bacteria                                                                - Bacteria-like organisms                                  - Fungi                                                             - Viruses.including COVID-19'
-                        //             '                     Hospital-acquired pneumonia'
-                        //             '                   Some people catch pneumonia during a hospital stay for another illness. Hospital- acquired pneumonia can be serious because the people who get it already sick.'
-                        //             '          Health care-acquired pneumonia'
-                        //             '                  It is a bacterial infection that occurs in people who live in long-term care facilities or who receive care in outpatient clinics.'
-                        //
-                        //       'Risk factors',
-                        //     child: buildText3(
-                        //       '- Children who are 2years old or younger\n- People who are age 65 or older\n- Being Hospitalized\n- Chronic disease\n- Smoking\n- Weakened or suppressed immune\n- system\n- Shortness of breath'
-
+                        OpenCloseTextBox(
+                          text: 'Many germs can cause pneumonia. The most common are bacteria and viruses in the air we breathe. Your body usually' 'prevents these germs from infecting your lungs. But sometimes these germs can overpower your immune system, even if' 'your health is generally good.' 'Pneumonia is classified according to the' ' Types of germs that cause it and where' 'you got the infection. Community-acquired pneumonia\n- Bacteria\n- Bacteria-like organisms\n- Fungi\n- Viruses.including COVID-19\nHospital-acquired pneumonia\nSome people catch pneumonia during a hospital stay for another illness. Hospital- acquired pneumonia can be serious because the people who get it already sick. Health care-acquired pneumonia It is a bacterial infection that occurs in people who live in long-term care facilities or who receive care in outpatient clinics.',
+                          title: 'Causes',
+                          clr: Colors.transparent,
+                          txtclr: Colors.grey,
+                        ),
+                        OpenCloseTextBox(
+                          text:'- Children who are 2years old or younger\n- People who are age 65 or older\n- Being Hospitalized\n- Chronic disease\n- Smoking\n- Weakened or suppressed immune\n- system\n- Shortness of breath',
+                          title: 'Risk factors',
+                          clr: Colors.red,
+                          txtclr: Colors.white,
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -154,6 +144,8 @@ class PneumoniaScreen extends StatelessWidget {
                                         builder: (context) => Result() ,
                                       ),
                                     );
+                                    AppCubit.get(context).loadModel();
+
                                   },
                                   child: Container(
                                     height: 125,

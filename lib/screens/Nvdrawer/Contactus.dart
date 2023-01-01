@@ -26,7 +26,7 @@ class Contactus extends StatelessWidget {
                 height: 50,
               ),
               const Center(
-                child: const Text(
+                child: Text(
                   'Got any questions?',
                   style: TextStyle(
                     fontSize: 25,
@@ -40,7 +40,7 @@ class Contactus extends StatelessWidget {
                 height: 30,
               ),
               const Center(
-                child: const Text(
+                child:  Text(
                   'You can send us a message regarding any',
                   style: TextStyle(
                     fontSize: 19,
@@ -64,9 +64,9 @@ class Contactus extends StatelessWidget {
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
-                child: const Text(
+                child:  Text(
                   'Email',
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontSize: 27,
                     fontFamily: 'seguisb',
                     color: Colors.black,

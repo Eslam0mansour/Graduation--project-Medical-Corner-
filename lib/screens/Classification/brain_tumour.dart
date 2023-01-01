@@ -8,6 +8,9 @@ class BrainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool more1 = false ;
+    bool more2 = false;
+    bool more3 = false;
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -67,48 +70,36 @@ class BrainScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            right: 10
-                        ),
-                        child: OpenCloseTextBox(
-                          text:'The signs and symptoms of a brain tumor vary greatly and depend on the brain tumor size, location and rate of growth. General signs and symptoms caused by brain tumors may include: New onset or change in pattern of headaches Headaches that gradually become more frequent and more severe Unexplained nausea or vomiting Vision problems, such as blurred vision, double vision or loss of peripheral vision Gradual loss of sensation or movement in an arm or a leg Difficulty with balance Speech difficulties Feeling very tired Confusion in everyday matters Difficulty making decisions Inability to follow simple commands Personality or behavior changes Seizures, especially in someone who does not have a history of seizures Hearing problems',
-
-                          title: 'Symptoms',
-
-                        )
+                    children:  [
+                      OpenCloseTextBox(
+                        text:'The signs and symptoms of a brain tumor vary greatly and depend on the brain tumor size, location and rate of growth. General signs and symptoms caused by brain tumors may include: New onset or change in pattern of headaches Headaches that gradually become more frequent and more severe Unexplained nausea or vomiting Vision problems, such as blurred vision, double vision or loss of peripheral vision Gradual loss of sensation or movement in an arm or a leg Difficulty with balance Speech difficulties Feeling very tired Confusion in everyday matters Difficulty making decisions Inability to follow simple commands Personality or behavior changes Seizures, especially in someone who does not have a history of seizures Hearing problems',
+                        title: 'Symptoms',
+                        clr: Colors.blue,
+                        txtclr: Colors.white,
                       ),
-                      // Container(
-                      //   padding: const EdgeInsets.all(8),
-                      //   child: buildText2(
-                      //       'Brain tumors that begin in the brain Primary brain tumors originate in the brain itself or in tissues close to it, such as in the brain-covering membranes (meninges), cranial nerves, pituitary gland or pineal gland. Primary brain tumors begin when normal cells develop changes (mutations) in their DNA. A cell is DNA contains the instructions that tell a cell what to do. The mutations tell the cells to grow and divide rapidly and to continue living when healthy cells would die. The result is a mass of abnormal cells, which forms a tumor. In adults, primary brain tumors are much less common than are secondary brain tumors, in which cancer begins elsewhere and spreads to the brain. Many different types of primary brain tumors exist. Each gets its name from the type of cells involved. Examples include: Gliomas. These tumors begin in the brain or spinal cord and include astrocytomas, ependymomas, glioblastomas, oligoastrocytomas and oligodendrogliomas. Meningiomas. A meningioma is a tumor that arises from the membranes that surround your brain and spinal cord (meninges). Most meningiomas are noncancerous. Acoustic neuromas (schwannomas). These are benign tumors that develop on the nerves that control balance and hearing leading from your inner ear to your brain. Pituitary adenomas. These are tumors that develop in the pituitary gland at the base of the brain. These tumors can affect the pituitary hormones with effects throughout the body. Medulloblastomas. These cancerous brain tumors are most common in children, though they can occur at any age. A medulloblastoma starts in the lower back part of the brain and tends to spread through the spinal fluid. Germ cell tumors. Germ cell tumors may develop during childhood where the testicles or ovaries will form. But sometimes germ cell tumors affect other parts of the body, such as the brain. Craniopharyngiomas. These rare tumors start near the brain pituitary gland, which secretes hormones that control many body functions. As the craniopharyngioma slowly grows, it can affect the pituitary gland and other structures near the brain. Cancer that begins elsewhere and spreads to the brain Secondary (metastatic) brain tumors are tumors that result from cancer that starts elsewhere in your body and then spreads (metastasizes) to your brain. Secondary brain tumors most often occur in people who have a history of cancer. Rarely, a metastatic brain tumor may be the first sign of cancer that began elsewhere in your body. In adults, secondary brain tumors are far more common than are primary brain tumors.',
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(
-                      //       right: 10
-                      //   ),
-                      //   child: Container(
-                      //     padding: const EdgeInsets.all(8),
-                      //     color: Colors.red,
-                      //     child: buildText3(
-                      //       'In most people with primary brain tumors, the cause of the tumor is not clear. But doctors have identified some factors that may increase your risk of a brain tumor. Risk factors include: Exposure to radiation. People who have been exposed to a type of radiation called ionizing radiation have an increased risk of brain tumor. Examples of ionizing radiation include radiation therapy used to treat cancer and radiation exposure caused by atomic bombs. Family history of brain tumors. A small portion of brain tumors occurs in people with a family history of brain tumors or a family history of genetic syndromes that increase the risk of brain tumors.',
-                      //     ),
-                      //   ),
-                      // ),
+                      OpenCloseTextBox(
+                        text:'Brain tumors that begin in the brain Primary brain tumors originate in the brain itself or in tissues close to it, such as in the brain-covering membranes (meninges), cranial nerves, pituitary gland or pineal gland. Primary brain tumors begin when normal cells develop changes (mutations) in their DNA. A cell is DNA contains the instructions that tell a cell what to do. The mutations tell the cells to grow and divide rapidly and to continue living when healthy cells would die. The result is a mass of abnormal cells, which forms a tumor. In adults, primary brain tumors are much less common than are secondary brain tumors, in which cancer begins elsewhere and spreads to the brain. Many different types of primary brain tumors exist. Each gets its name from the type of cells involved. Examples include: Gliomas. These tumors begin in the brain or spinal cord and include astrocytomas, ependymomas, glioblastomas, oligoastrocytomas and oligodendrogliomas. Meningiomas. A meningioma is a tumor that arises from the membranes that surround your brain and spinal cord (meninges). Most meningiomas are noncancerous. Acoustic neuromas (schwannomas). These are benign tumors that develop on the nerves that control balance and hearing leading from your inner ear to your brain. Pituitary adenomas. These are tumors that develop in the pituitary gland at the base of the brain. These tumors can affect the pituitary hormones with effects throughout the body. Medulloblastomas. These cancerous brain tumors are most common in children, though they can occur at any age. A medulloblastoma starts in the lower back part of the brain and tends to spread through the spinal fluid. Germ cell tumors. Germ cell tumors may develop during childhood where the testicles or ovaries will form. But sometimes germ cell tumors affect other parts of the body, such as the brain. Craniopharyngiomas. These rare tumors start near the brain pituitary gland, which secretes hormones that control many body functions. As the craniopharyngioma slowly grows, it can affect the pituitary gland and other structures near the brain. Cancer that begins elsewhere and spreads to the brain Secondary (metastatic) brain tumors are tumors that result from cancer that starts elsewhere in your body and then spreads (metastasizes) to your brain. Secondary brain tumors most often occur in people who have a history of cancer. Rarely, a metastatic brain tumor may be the first sign of cancer that began elsewhere in your body. In adults, secondary brain tumors are far more common than are primary brain tumors.',
+                        title: 'Causes',
+                        clr: Colors.transparent,
+                        txtclr: Colors.grey,
+                      ),
+                      OpenCloseTextBox(
+                        text:'In most people with primary brain tumors, the cause of the tumor is not clear. But doctors have identified some factors that may increase your risk of a brain tumor. Risk factors include: Exposure to radiation. People who have been exposed to a type of radiation called ionizing radiation have an increased risk of brain tumor. Examples of ionizing radiation include radiation therapy used to treat cancer and radiation exposure caused by atomic bombs. Family history of brain tumors. A small portion of brain tumors occurs in people with a family history of brain tumors or a family history of genetic syndromes that increase the risk of brain tumors.',
+                        title: 'Risk factors',
+                        clr: Colors.red,
+                        txtclr: Colors.white,
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Divider(
-                    endIndent: 15,
-                    thickness: 2,
-                    color: Color(0xff03045E),
-                  ),
-                  const SizedBox(
-                    height: 20,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20,
+                    ),
+                    child: Divider(
+                      endIndent: 15,
+                      thickness: 2,
+                      color: Color(0xff03045E),
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,

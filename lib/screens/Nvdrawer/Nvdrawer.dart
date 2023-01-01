@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Network/services/auth.dart';
 
 class Nvdrawer extends StatelessWidget {
@@ -9,7 +8,7 @@ class Nvdrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xff03045E),
+      backgroundColor: const Color(0xff03045E),
       child:SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -19,6 +18,7 @@ class Nvdrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
                     'Medical Corner',
@@ -28,15 +28,16 @@ class Nvdrawer extends StatelessWidget {
                       fontFamily: 'seguisb',
                     ),
                   ),
-                  SizedBox(
-                    width: 50,
-                  ),
                   Builder(builder: (context) {
                     return IconButton(
+                      padding: const EdgeInsets.only(
+                        right: 10
+                      ),
                       onPressed: () => Scaffold.of(context).closeDrawer(),
                       icon: const Icon(
                           Icons.close,
                         color: Colors.white,
+                        size: 28,
                       ),
                     );
                   }),

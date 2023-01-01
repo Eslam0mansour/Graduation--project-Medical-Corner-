@@ -15,6 +15,11 @@ class GetHeErorrState extends AppState{
    final String error;
   GetHeErorrState(this.error);
  }
+ class LodinState extends AppState{}
+ class FinalResultState extends AppState{}
+ class ModelLodedSTate extends AppState{}
+ class ClassifyState extends AppState{}
+ class pickedState extends AppState{}
 
  class Mood extends AppState{}
  class ChangLange extends AppState{}
