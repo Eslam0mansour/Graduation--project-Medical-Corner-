@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intro_example/router/app_router.dart';
-import 'package:intro_example/cubit/observer.dart';
-import 'package:intro_example/cubit/states.dart';
-import 'cubit/cubit.dart';
-import 'netWork/dio_helper.dart';
+import 'package:intro_example/core/cubit/cubit.dart';
+import 'package:intro_example/core/cubit/observer.dart';
+import 'package:intro_example/core/cubit/states.dart';
+import 'package:intro_example/core/router/app_router.dart';
+import 'core/Network/news api service/dio_helper.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

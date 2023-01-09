@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:intro_example/cubit/cubit.dart';
+import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/main.dart';
 
 void main() {
