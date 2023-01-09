@@ -6,6 +6,11 @@ It also provides prediction for heart disease, and diabetes. using deep learning
 
 https://user-images.githubusercontent.com/101331596/210183460-a9aace73-0759-4a25-9dc6-acfc45e3684c.mp4
 
+UPDATES⏬⏬⏬⏬⏬⏬✅✅
+
+https://user-images.githubusercontent.com/101331596/211238067-ec40d1ad-1453-41dd-8c4e-595968a27b42.mp4
+
+
 
 ## Getting Started 
 
