@@ -21,11 +21,23 @@ class AppCubit extends Cubit<AppState>{
     await Tflite.loadModel(
       model: "assets/model.tflite",
       labels: "assets/labels.txt",
+    ).then((value) {
+      loading = false;
+      emit(ModelLoadedSTate());
+      print('pneumonia model loaded');
+    });
+  }
+  Future loadBrainTumourModel() async {
+    Tflite.close();
+    emit(ModelLoadedSTate());
+    await Tflite.loadModel(
+      model: "assets/model_brain_tumour.tflite",
+      labels: "assets/labels_brain_tumour.txt",
 
     ).then((value) {
       loading = false;
       emit(ModelLoadedSTate());
-
+      print( 'brain tumour model loaded');
     });
   }
   // bool loading = true;
@@ -63,32 +75,56 @@ class AppCubit extends Cubit<AppState>{
   // bool get getLoading => loading;
 
   final ImagePicker _picker = ImagePicker();
-  Future pickImage() async {
+  Future pickImage({
+    required double imageMean,
+    required double imageStd,
+    required int numResults,
+    required double threshold,
+}) async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;
     loading = true;
     iimage  = File(image.path);
     emit(pickedState());
-    classifyImage(File(image.path));
+    classifyImage(
+      image: File(image.path),
+      imageMean: imageMean,
+      imageStd: imageStd,
+      numResults: numResults,
+      threshold: threshold,
+    );
     emit(ClassifyState());
   }
 
   late List? outputs;
   File? iimage;
   late bool loading = true;
-  void classifyImage( File image ) async {
+  void classifyImage({
+    required File image,
+    required double imageMean,
+    required double imageStd,
+    required int numResults,
+    required double threshold,
+  }) async {
     var output = await Tflite.runModelOnImage(
         path: image.path,
-        numResults: 1,
-        threshold: 0.2,
-        imageMean: 0.0,
-        imageStd: 180.0,
+        numResults: numResults,
+        threshold: threshold,
+        imageMean: imageMean,
+        imageStd: imageStd,
         asynch: true
     );
     loading = false;
     outputs = output!;
     print(outputs);
     emit(FinalResultState());
+  }
+
+  //make iimage and output = null function
+  void clearImage() {
+    iimage = null;
+    outputs = null;
+    emit(clearState());
   }
 
   Future<String>  save(Uint8List bytes) async

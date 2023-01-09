@@ -20,10 +20,7 @@ class GetHeErorrState extends AppState{
  class ModelLoadedSTate extends AppState{}
  class ClassifyState extends AppState{}
  class pickedState extends AppState{}
-
- class Mood extends AppState{}
- class ChangLange extends AppState{}
- class ChangColor extends AppState{}
+  class clearState extends AppState{}
 
   class PickImageState extends AppState{}
   class ClassifyImageState extends AppState{}

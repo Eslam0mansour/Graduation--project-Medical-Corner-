@@ -161,7 +161,12 @@ class Result extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    cubit.pickImage();
+                    cubit.pickImage(
+                      numResults: 1,
+                      threshold: 0.2,
+                      imageMean: 0.0,
+                      imageStd: 180.0,
+                    );
                   },
                   child: const Text(
                     'Classify',

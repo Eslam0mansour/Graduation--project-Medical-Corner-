@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/features/Classification/brain%20tumour/result_braintumour.dart';
 import 'package:intro_example/features/custom%20widgets/open_close_Text_box.dart';
 import 'last_rsult_braintumour.dart';
@@ -132,7 +133,8 @@ class BrainScreen extends StatelessWidget {
                                       builder: (context) => ResultBrain() ,
                                     ),
                                   );
-
+                                  AppCubit.get(context).loadBrainTumourModel();
+                                  AppCubit.get(context).clearImage();
                                 },
                                 child: Container(
                                   height: 125,

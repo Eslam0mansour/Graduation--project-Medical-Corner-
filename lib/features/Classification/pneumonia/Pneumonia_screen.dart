@@ -141,6 +141,7 @@ class PneumoniaScreen extends StatelessWidget {
                                       ),
                                     );
                                     AppCubit.get(context).loadModel();
+                                    AppCubit.get(context).clearImage();
 
                                   },
                                   child: Container(
