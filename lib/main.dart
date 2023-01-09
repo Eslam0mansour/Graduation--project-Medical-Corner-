@@ -17,7 +17,7 @@ void main() async {
       blocObserver: MyBlocObserver()
   );
 }
-
+//a
 class MyApp extends StatelessWidget {
   final AppCubit app;
 
