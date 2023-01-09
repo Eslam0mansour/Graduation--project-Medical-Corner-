@@ -1,2 +1,2 @@
-0 Congratulations, you are a normal case
-1 Unfortunately, you have pneumonia .
+Congratulations, you are a normal case
+Unfortunately, you have pneumonia .

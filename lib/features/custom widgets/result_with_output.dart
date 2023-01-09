@@ -23,7 +23,7 @@ class Result1 extends StatelessWidget {
           child: Stack(
             children: [
               SizedBox(
-                height: height * 0.65,
+                height: height * 0.6,
                 child: Image.file(
                     cubit.iimage!,
                     fit: BoxFit.contain,
