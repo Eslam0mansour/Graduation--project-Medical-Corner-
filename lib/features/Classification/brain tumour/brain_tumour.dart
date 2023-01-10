@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro_example/core/cubit/cubit.dart';
-import 'package:intro_example/features/Classification/brain%20tumour/result_braintumour.dart';
+import 'package:intro_example/features/Classification/detection_lab.dart';
 import 'package:intro_example/features/custom%20widgets/open_close_Text_box.dart';
 import 'last_rsult_braintumour.dart';
 
@@ -130,8 +130,7 @@ class BrainScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ResultBrain() ,
-                                    ),
+                                      builder: (context) => Result(lottieAnimationName:'5',),),
                                   );
                                   AppCubit.get(context).loadBrainTumourModel();
                                   AppCubit.get(context).clearImage();

@@ -1,23 +1,30 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/core/cubit/states.dart';
-import 'package:intro_example/features/custom%20widgets/result_with_output.dart';
+import 'package:intro_example/features/Classification/result_with_output_of_detection.dart';
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
 
 class Result extends StatelessWidget {
+  String lottieAnimationName;
+
   final controllerr = ScreenshotController();
 
-  Result({Key? key}) : super(key: key);
+  Result({Key? key, required this.lottieAnimationName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
         if (state is ModelLoadedSTate) {
-          AppCubit.get(context).iimage = null;
-          AppCubit.get(context).outputs = null;
+          AppCubit
+              .get(context)
+              .iimage = null;
+          AppCubit
+              .get(context)
+              .outputs = null;
         }
         if (state is FinalResultState) {
           showDialog(
@@ -25,7 +32,9 @@ class Result extends StatelessWidget {
               builder: (context) {
                 return AlertDialog(
                   title: Text(
-                    AppCubit.get(context).outputs![0]['label'],
+                    AppCubit
+                        .get(context)
+                        .outputs![0]['label'],
                     style: const TextStyle(
                       color: Colors.red,
                       fontSize: 22,
@@ -67,7 +76,7 @@ class Result extends StatelessWidget {
                   ),
                 ),
                 title: const Text(
-                  'My Detection Lap',
+                  'My Detection Lab',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w700,
@@ -78,77 +87,81 @@ class Result extends StatelessWidget {
               ),
               body: cubit.loading
                   ? Container(
-                      alignment: Alignment.center,
-                      child: const CircularProgressIndicator(),
-                    )
+                alignment: Alignment.center,
+                child: const CircularProgressIndicator(),
+              )
                   : Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                alignment: Alignment.center,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      cubit.iimage == null
+                          ? Container(
+                        child: Lottie.asset('assets/$lottieAnimationName.json'),
+                      )
+                          : Result1(cubit: cubit,),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                        ),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             cubit.iimage == null
-                                ? Container(
-                                    child: Lottie.asset('assets/3.json'),
-                                  )
-                                : const Result1(),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20,
+                                ? Container()
+                                : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(100, 50),
+                                ),
+                                onPressed: () async {
+                                  final imageee = await controllerr
+                                      .captureFromWidget(
+                                      Result1(cubit: cubit,));
+                                  await AppCubit.get(context).saveImage(
+                                      imageee);
+                                },
+                                child: const Text(
+                                  'save to the Gallery',
+                                  style: TextStyle(fontSize: 17),
+                                ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  cubit.iimage == null
-                                      ? Container()
-                                      : Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              minimumSize: const Size(100, 50),
-                                            ),
-                                            onPressed: () async {
-                                              final imageee = await controllerr
-                                                  .captureFromWidget(
-                                                      const Result1());
-                                              if (imageee == null) {
-                                                return;
-                                              }
-                                              await cubit.save(imageee);
-                                            },
-                                            child: const Text(
-                                              'save to the Gallery',
-                                              style: TextStyle(fontSize: 17),
-                                            ),
-                                          ),
-                                        ),
-                                  cubit.iimage == null
-                                      ? Container()
-                                      : Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              minimumSize: const Size(100, 50),
-                                            ),
-                                            onPressed: () {},
-                                            child: const Text(
-                                              'save to the Cloud',
-                                              style: TextStyle(
-                                                fontSize: 17,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                ],
+                            ),
+                            cubit.iimage == null
+                                ? Container()
+                                : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size(100, 50),
+                                ),
+                                onPressed: () {},
+                                child: const Text(
+                                  'save to the Cloud',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ),
+                    ],
+                  ),
+                ),
+              ),
               floatingActionButton: Align(
                 alignment: Alignment.bottomRight,
                 child: ElevatedButton(
@@ -181,30 +194,7 @@ class Result extends StatelessWidget {
       },
     );
   }
-
-// Future classifyImage( File image ) async {
-//   var output = await Tflite.runModelOnImage(
-//       path: image.path,
-//       numResults: 1,
-//       threshold: 0.2,
-//       imageMean: 0.0,
-//       imageStd: 180.0,
-//       asynch: true
-//   );
-//   setState(() {
-//     _loading = false;
-//     _outputs = output!;
-//   });
-// }
-// Future pickImage() async {
-//   final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-//   if (image == null) return null;
-//   setState(() {
-//     _loading = true;
-//     _image = selectedImage = File(image.path);
-//   });
-//   classifyImage(File(image.path));
-// }
+}
 // Future pickImagetocloud() async {
 //   final picker = ImagePicker();
 //   final pickedImage = await picker.getImage(source: ImageSource.gallery);
@@ -237,16 +227,3 @@ class Result extends StatelessWidget {
 //     print('erorrrrrr');
 //   }
 // }
-
-// loadModel() async {
-//   await Tflite.loadModel(
-//     model: "assets/model.tflite",
-//     labels: "assets/labels.txt",
-//   );
-// }
-// @override
-// void dispose() {
-//   Tflite.close();
-//   super.dispose();
-// }
-}
