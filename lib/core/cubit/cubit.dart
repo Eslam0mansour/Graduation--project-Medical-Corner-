@@ -12,7 +12,6 @@ import 'package:tflite/tflite.dart';
 
 class AppCubit extends Cubit<AppState>{
   AppCubit():super(IntiAppState());
-
   static AppCubit get(context)=>BlocProvider.of(context);
 
   Future loadModel() async {
@@ -40,39 +39,6 @@ class AppCubit extends Cubit<AppState>{
       print( 'brain tumour model loaded');
     });
   }
-  // bool loading = true;
-  // File? image;
-  // List? output;
-  //
-  // Future pickImage() async {
-  //   emit(PickImageState());
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   image = File(pickedFile!.path);
-  //   emit(PickImageState());
-  // }
-  // Future pickCamera() async {
-  //   emit(PickImageState());
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.camera);
-  //   image = File(pickedFile!.path);
-  //   emit(PickImageState());
-  // }
-  // Future classifyImage() async {
-  //   emit(ClassifyImageState());
-  //   output = await Tflite.runModelOnImage(
-  //     path: image!.path,
-  //     numResults: 2,
-  //     threshold: 0.5,
-  //     imageMean: 127.5,
-  //     imageStd: 127.5,
-  //   );
-  //   emit(ClassifyImageState());
-  // }
-  //
-  // List? get getOutput => output;
-  // File? get getImage => image;
-  // bool get getLoading => loading;
 
   final ImagePicker _picker = ImagePicker();
   Future pickImage({
@@ -85,7 +51,7 @@ class AppCubit extends Cubit<AppState>{
     if (image == null) return null;
     loading = true;
     iimage  = File(image.path);
-    emit(pickedState());
+    emit(PickedImageState());
     classifyImage(
       image: File(image.path),
       imageMean: imageMean,
@@ -93,7 +59,7 @@ class AppCubit extends Cubit<AppState>{
       numResults: numResults,
       threshold: threshold,
     );
-    emit(ClassifyState());
+    emit(ClassifyImageState());
   }
 
   late List? outputs;
@@ -124,20 +90,24 @@ class AppCubit extends Cubit<AppState>{
   void clearImage() {
     iimage = null;
     outputs = null;
-    emit(clearState());
+    emit(ClearState());
   }
 
-  Future<String>  save(Uint8List bytes) async
-  {
-    await [Permission.storage].request();
-    const name = 'result of Xray';
-    final result = await ImageGallerySaver.saveImage(bytes , name : name);
-    return result['filepath'];
+  //save image to gallery function and permission function
+  Future<void> saveImage(Uint8List bytes) async {
+    final status = await Permission.storage.request();
+    if (status.isGranted) {
+      final result = await ImageGallerySaver.saveImage(
+          Uint8List.fromList(bytes.buffer.asUint8List()));
+      print(result);
+    } else {
+      print('permission denied');
+    }
   }
 
   List<dynamic> hel=[];
   void getHel(){
-    emit(GetHeLodinState());
+    emit(GetNewsLoadState());
     if(hel.isEmpty){
       DioHelper.getData(
           url: 'v2/top-headlines',
@@ -148,13 +118,13 @@ class AppCubit extends Cubit<AppState>{
           }).then((value) {
            print('title is ${value.data['articles'][0]['title']}');
             hel=value.data['articles'];
-            emit(GetHeSuccSTate());
+            emit(GetNewsDoneState());
           }).catchError((onError){
             print('the error is ${onError.toString()}');
-            emit(GetHeErorrState(onError.toString()));
+            emit(GetNewsErrorState(onError.toString()));
           });
     }else{
-     emit(GetHeSuccSTate());
+     emit(GetNewsDoneState());
     }
   }
 }

@@ -1,30 +1,15 @@
  abstract class AppState{}
  class IntiAppState extends AppState{}
- class ChangBottomBarIndix extends AppState{}
 
-class GetSrLodinState extends AppState{}
-class GetMore extends AppState{}
-class GetSrSuccSTate extends AppState{}
-class GetSrErorrState extends AppState{
+ class GetNewsLoadState extends AppState{}
+class GetNewsDoneState extends AppState{}
+class GetNewsErrorState extends AppState{
    final String error;
-  GetSrErorrState(this.error);
- }
- class GetHeLodinState extends AppState{}
-class GetHeSuccSTate extends AppState{}
-class GetHeErorrState extends AppState{
-   final String error;
-  GetHeErorrState(this.error);
+   GetNewsErrorState(this.error);
  }
  class LoadingState extends AppState{}
  class FinalResultState extends AppState{}
  class ModelLoadedSTate extends AppState{}
- class ClassifyState extends AppState{}
- class pickedState extends AppState{}
-  class clearState extends AppState{}
-
-  class PickImageState extends AppState{}
-  class ClassifyImageState extends AppState{}
-  class GetImageState extends AppState{}
-  class GetClassifyImageState extends AppState{}
-  class GetLoadingState extends AppState{}
-  class GetOutputState extends AppState{}
+ class ClassifyImageState extends AppState{}
+ class PickedImageState extends AppState{}
+ class ClearState extends AppState{}

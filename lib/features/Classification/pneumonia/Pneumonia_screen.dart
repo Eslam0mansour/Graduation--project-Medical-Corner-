@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/core/cubit/states.dart';
-import 'package:intro_example/features/Classification/pneumonia/result_Pneumonia.dart';
+import 'package:intro_example/features/Classification/detection_lab.dart';
 import 'package:intro_example/features/custom%20widgets/open_close_Text_box.dart';
 import 'last_rsult_pneumonia.dart';
 
@@ -137,7 +137,7 @@ class PneumoniaScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Result() ,
+                                        builder: (context) => Result(lottieAnimationName:'3',) ,
                                       ),
                                     );
                                     AppCubit.get(context).loadModel();
