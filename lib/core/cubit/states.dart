@@ -1,11 +1,11 @@
  abstract class AppState{}
  class IntiAppState extends AppState{}
 
- class GetNewsLoadState extends AppState{}
-class GetNewsDoneState extends AppState{}
-class GetNewsErrorState extends AppState{
+ class NewsLoadState extends AppState{}
+class NewsDoneState extends AppState{}
+class NewsErrorState extends AppState{
    final String error;
-   GetNewsErrorState(this.error);
+   NewsErrorState(this.error);
  }
  class LoadingState extends AppState{}
  class FinalResultState extends AppState{}

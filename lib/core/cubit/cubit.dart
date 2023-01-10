@@ -6,6 +6,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intro_example/core/Network/news%20api%20service/dio_helper.dart';
 import 'package:intro_example/core/cubit/states.dart';
+import 'package:intro_example/features/News/data_models/News.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tflite/tflite.dart';
 
@@ -105,26 +106,23 @@ class AppCubit extends Cubit<AppState>{
     }
   }
 
-  List<dynamic> hel=[];
-  void getHel(){
-    emit(GetNewsLoadState());
-    if(hel.isEmpty){
-      DioHelper.getData(
-          url: 'v2/top-headlines',
-          q_p: {
-            'country':'gb',
-            'category':'health',
-            'apiKey':'c806ed6527df4f2aadc50d564e6923d4',
-          }).then((value) {
-           print('title is ${value.data['articles'][0]['title']}');
-            hel=value.data['articles'];
-            emit(GetNewsDoneState());
-          }).catchError((onError){
-            print('the error is ${onError.toString()}');
-            emit(GetNewsErrorState(onError.toString()));
-          });
-    }else{
-     emit(GetNewsDoneState());
-    }
+  News news = News();
+  void getNews() async {
+    emit(NewsLoadState());
+    await DioHelper.getData(
+      url: 'top-headlines',
+      query: {
+        'country': 'gb',
+        'category': 'health',
+        'apiKey': 'c806ed6527df4f2aadc50d564e6923d4',
+      },
+    ).then((value) {
+      news = News.fromJson(value.data);
+      print(news.articles![0].title);
+      emit(NewsDoneState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(NewsErrorState( error.toString()));
+    });
   }
 }

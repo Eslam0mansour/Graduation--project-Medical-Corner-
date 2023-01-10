@@ -11,9 +11,9 @@ import 'core/Network/news api service/dio_helper.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  DioHelper.inti();
+  DioHelper.init();
   BlocOverrides.runZoned(
-          () {runApp(MyApp(app: AppCubit()..getHel(),));},
+          () {runApp(MyApp(app: AppCubit()..getNews(),));},
       blocObserver: MyBlocObserver()
   );
 }

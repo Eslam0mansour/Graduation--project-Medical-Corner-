@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intro_example/core/router/custom_page_route.dart';
 import 'package:intro_example/features/Classification/pneumonia/Pneumonia_screen.dart';
 import 'package:intro_example/features/Classification/brain%20tumour/brain_tumour.dart';
-import 'package:intro_example/features/News/screens/health.dart';
 import 'package:intro_example/features/Nvdrawer/Contactus.dart';
 import 'package:intro_example/features/Nvdrawer/aboutus.dart';
 import 'package:intro_example/features/Nvdrawer/profile.dart';
@@ -28,9 +27,6 @@ class AppRouter {
             direction: AxisDirection.left, child: const Homepage());
       case screens.introductionPage:
         return MaterialPageRoute(builder: (_) => const IntroductionPage());
-      case screens.newsPage:
-        return CustomPageRoute(
-            direction: AxisDirection.up, child: const NewsPage());
       case screens.pneumoniaScreen:
         return CustomPageRoute(
             direction: AxisDirection.left, child: const PneumoniaScreen());
@@ -52,6 +48,7 @@ class AppRouter {
       case screens.contactus:
         return CustomPageRoute(
             direction: AxisDirection.right, child: const Contactus());
+
       default:
         return null;
     }

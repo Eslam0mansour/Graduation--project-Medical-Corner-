@@ -130,7 +130,13 @@ class BrainScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Result(lottieAnimationName:'5',),),
+                                      builder: (context) => Result(
+                                        lottieAnimationName:'5',
+                                        numResults: 2,
+                                      threshold: 0.5,
+                                      imageMean: 127.5,
+                                      imageStd: 127.5,
+                                    ),),
                                   );
                                   AppCubit.get(context).loadBrainTumourModel();
                                   AppCubit.get(context).clearImage();

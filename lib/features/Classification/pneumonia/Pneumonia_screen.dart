@@ -137,7 +137,13 @@ class PneumoniaScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Result(lottieAnimationName:'3',) ,
+                                        builder: (context) => Result(
+                                          lottieAnimationName:'3',
+                                          numResults: 1,
+                                          threshold: 0.2,
+                                          imageMean: 0.0,
+                                          imageStd: 180.0,
+                                        ) ,
                                       ),
                                     );
                                     AppCubit.get(context).loadModel();
