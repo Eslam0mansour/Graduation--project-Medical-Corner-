@@ -84,6 +84,7 @@ class AppCubit extends Cubit<AppState>{
     loading = false;
     outputs = output!;
     print(outputs);
+    print(imageStd);
     emit(FinalResultState());
   }
 

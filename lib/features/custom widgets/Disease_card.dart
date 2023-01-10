@@ -22,7 +22,7 @@ String diseaseName ;
           children: [
              Image(
               image: AssetImage(
-                  'images/$image'
+                  'assets/images/$image'
               ),
               height: 326.0,
               width: 250.0,

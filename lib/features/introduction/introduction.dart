@@ -61,7 +61,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
-                              'images/33.jpg',
+                              'assets/images/33.jpg',
                             ),
                         )
                     )

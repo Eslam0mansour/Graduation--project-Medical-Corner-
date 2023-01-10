@@ -73,7 +73,7 @@ class Result extends StatelessWidget {
                             cubit.iimage == null
                                 ? Container(
                                     child: Lottie.asset(
-                                        'assets/$lottieAnimationName.json'),
+                                        'assets/lottie_animations/$lottieAnimationName.json'),
                                   )
                                 : Result1(
                                     cubit: cubit,

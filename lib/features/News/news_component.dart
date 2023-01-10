@@ -22,7 +22,7 @@ class ItemList extends StatelessWidget {
                     child: Hero(
                       tag: artical.title![0],
                       child: Image.asset(
-                        'photos/6.png',
+                        'assets/images/warning.png',
                         fit: BoxFit.cover,
                       ),
                     ),

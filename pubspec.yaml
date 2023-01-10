@@ -56,13 +56,13 @@ dev_dependencies:
   flutter_native_splash: any
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/icon.png
+  image: assets/images/icon.png
   flutter_launcher_icons: ^0.9.2
 
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/ic_launcher.png"
+  image_path: "assets/images/ic_launcher.png"
 
 
 flutter:
@@ -70,8 +70,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - photos/
-    - images/
+    - assets/images/
+    - assets/lottie_animations/
   fonts:
     - family: seguisb
       fonts:

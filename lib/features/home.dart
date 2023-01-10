@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -72,7 +71,7 @@ class Homepage extends StatelessWidget {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    'assets/22.jpg',
+                    'assets/images/home.jpg',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -107,7 +106,7 @@ class Homepage extends StatelessWidget {
                                     Navigator.pushNamed(context, '/p');
                                   },
                                   child: DiseaseCard(
-                                    image: 'a.jpg',
+                                    image: 'Pneumonia.jpg',
                                     diseaseName: 'Pneumonia',
                                   ),
                                 ),
@@ -116,7 +115,7 @@ class Homepage extends StatelessWidget {
                                     Navigator.pushNamed(context, '/b');
                                   },
                                   child: DiseaseCard(
-                                    image: 's.jpg',
+                                    image: 'Brain Tumour.jpg',
                                     diseaseName: 'Brain Tumour',
                                   ),
                                 ),
@@ -143,7 +142,7 @@ class Homepage extends StatelessWidget {
                                     Navigator.pushNamed(context, '/h');
                                   },
                                   child: DiseaseCard(
-                                    image: '1.jpg',
+                                    image: 'Heart Disease.jpg',
                                     diseaseName: 'Heart Disease',
                                   ),
                                 ),
@@ -152,7 +151,7 @@ class Homepage extends StatelessWidget {
                                     Navigator.pushNamed(context, '/d');
                                   },
                                   child: DiseaseCard(
-                                    image: '2.jpg',
+                                    image: 'Diabetes.jpg',
                                     diseaseName: 'Diabetes',
                                   ),
                                 ),
@@ -189,7 +188,7 @@ class Homepage extends StatelessWidget {
                                               )),
                                               image: DecorationImage(
                                                 image: AssetImage(
-                                                  'assets/22.jpg',
+                                                  'assets/images/home.jpg',
                                                 ),
                                                 fit: BoxFit.cover,
                                               ),

@@ -138,7 +138,7 @@ class PneumoniaScreen extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => Result(
-                                          lottieAnimationName:'3',
+                                          lottieAnimationName:'pneumonia',
                                           numResults: 1,
                                           threshold: 0.2,
                                           imageMean: 0.0,
@@ -146,9 +146,8 @@ class PneumoniaScreen extends StatelessWidget {
                                         ) ,
                                       ),
                                     );
-                                    AppCubit.get(context).loadModel();
-                                    AppCubit.get(context).clearImage();
-
+                                    cubit.clearImage();
+                                    cubit.loadModel();
                                   },
                                   child: Container(
                                     height: 125,
