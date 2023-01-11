@@ -8,6 +8,7 @@ import 'package:intro_example/features/Nvdrawer/profile.dart';
 import 'package:intro_example/features/Prediction/Diabetes_screen.dart';
 import 'package:intro_example/features/Prediction/Heart_screen.dart';
 import 'package:intro_example/features/home.dart';
+import 'package:intro_example/features/introduction/auth_sheet/sign_up.dart';
 import 'package:intro_example/features/introduction/introduction.dart';
 import 'package:intro_example/features/splash.dart';
 import 'package:intro_example/core/const/screens_Names.dart' as screens;
@@ -25,6 +26,9 @@ class AppRouter {
       case screens.homepage:
         return CustomPageRoute(
             direction: AxisDirection.left, child: const Homepage());
+      case screens.signup:
+        return CustomPageRoute(
+            direction: AxisDirection.left, child: const Sign_up());
       case screens.introductionPage:
         return MaterialPageRoute(builder: (_) => const IntroductionPage());
       case screens.pneumoniaScreen:

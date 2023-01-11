@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intro_example/core/Network/firebase%20service/auth.dart';
+import 'package:intro_example/core/cubit/cubit.dart';
 
 class Nvdrawer extends StatelessWidget {
    Nvdrawer({Key? key}) : super(key: key);
@@ -183,7 +184,7 @@ class Nvdrawer extends StatelessWidget {
               ),
               InkWell(
                 onTap: () async {
-                  authBase.logout();
+                  AppCubit.get(context).signOut();
                   Navigator.pushNamed(context, '/intro');
                 },
                 child: Row(

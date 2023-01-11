@@ -72,6 +72,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/lottie_animations/
+    - assets/tflite_models/
   fonts:
     - family: seguisb
       fonts:

@@ -1,210 +1,203 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intro_example/features/home.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intro_example/core/cubit/cubit.dart';
+import 'package:intro_example/core/cubit/states.dart';
+import 'package:intro_example/features/custom%20widgets/my_form_field.dart';
 
 class Sign_up extends StatefulWidget {
   const Sign_up({Key? key}) : super(key: key);
+
   @override
   State<Sign_up> createState() => _Sign_upState();
 }
+
 class _Sign_upState extends State<Sign_up> {
 
-  final TextEditingController
-  emailController = TextEditingController(),
+   TextEditingController emailController = TextEditingController(),
       nameController = TextEditingController(),
-      genderController = TextEditingController(),
       passwordController = TextEditingController(),
       repasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  final _store = FirebaseFirestore.instance;
-
+  bool isPassword = true;
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: const Color(0xff00B4D8),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Welcome to sign up page.,',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: deviceSize.height * 0.07),
-                  Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: Colors.white,
-                      child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 8),
-                          child: Center(
-                              child: TextFormField(
-                                validator: (value) =>
-                                value!.isEmpty ? 'You must enter a valid email' : null,
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade400),
-                                  hintText: 'Email',
-                                  border: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                ),
-                              )))),//دا الايميل
-                  const SizedBox(height: 12),
-                  Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 8),
-                          child: Center(
-                              child: TextFormField(
-                                validator: (value) =>
-                                value!.length <= 6 ?
-                                'Your password must be larger than 6 characters'
-                                    : null,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade400),
-                                  hintText: 'Password',
-
-                                  border: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                ),
-                              )))), // دا الباسورد
-                  const SizedBox(height: 12),
-                  Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: Colors.white,
-                      child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 8),
-                          child: Center(
-                              child: TextFormField(
-                                validator: (value) =>
-                                value!.isEmpty ? 'You must enter a valid name' : null,
-                                controller: nameController,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade400),
-                                  hintText: 'name',
-                                  border: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                ),
-                              )))),//دا الاسم
-                  const SizedBox(height: 12),
-                  Material(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      color: Colors.white,
-                      child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 8),
-                          child: Center(
-                              child: TextFormField(
-                                validator: (value) =>
-                                value!.isEmpty ? 'You must enter a valid gender' : null,
-                                controller: genderController,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade400),
-                                  hintText: 'Gender',
-                                  border: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  focusedErrorBorder: InputBorder.none,
-                                ),
-                              )))),//دا النوع
-                  const SizedBox(height: 12),
-                  SizedBox(
-                      height: deviceSize.height * 0.05,
-                      width: deviceSize.width,
-                      child: Material(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          child: InkWell(
-                            onTap: () async {
-                              if (_formKey.currentState!.validate()) {
-                                 await FirebaseAuth.instance.
-                                createUserWithEmailAndPassword
-                                  (email: emailController.text, password: passwordController.text );
-                                final user = FirebaseAuth.instance.currentUser;
-                                if( user != null) {
-                                  _store.collection('users').doc(user.uid).set({
-                                    'name': nameController.text,
-                                    'uid' : user.uid,
-                                    'email' : user.email,
-                                    'gender': genderController.text,
-                                    'imageurl' : null,
-                                    'imageurl2' : null,
-                                    'password' : passwordController.text,
-                                  });
-                                }
-                                else
-                                {
-                                  print('try later ');
-                                }
-
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const Homepage() ,
-                                  ),
-                                );
-                              }
-                              FocusScope.of(context).unfocus();
-                            },
-                              child: const Center(
-                                  child: Text('Sign up',
-                                      style: TextStyle(
-                                          color: Color(0xff03045E),
-                                          fontSize: 20,
-                                          fontWeight:
-                                          FontWeight.w800)
-                                  )
-                              )
+    return BlocConsumer<AppCubit, AppState>(
+      listener: (context, state) {
+        if (state is SignUpDoneState) {
+          Navigator.of(context).pushReplacementNamed('/Home');
+        }
+        if (state is SignUpErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.red,
+              content: Text(state.error),
+            ),
+          );
+        }
+        if (state is SignUpLoadingState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: Colors.blue,
+              content: Text('Loading...'),
+            ),
+          );
+        }
+      },
+      builder: (context, state) {
+        AppCubit cubit = AppCubit.get(context);
+        return Scaffold(
+          backgroundColor: const Color(0xff00B4D8),
+          body: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                       const Align(
+                        alignment: Alignment.topLeft,
+                         child: Text(
+                          'Sign Up with Email.',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
-                      )
-                  ),// زرار sign up
-                  const SizedBox(
-                    height: 10,
+                      ),
+                       ),
+                      SizedBox(height: deviceSize.height * 0.07),
+                      MyFormField(
+                        label: 'Name',
+                        hint: 'Enter your name',
+                        prefixIcon: Icons.person,
+                        controller: nameController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                        },
+                      ),
+                      SizedBox(height: deviceSize.height * 0.02),
+                      MyFormField(
+                        label: 'Email',
+                        hint: 'Enter your email',
+                        prefixIcon: Icons.email,
+                        controller: emailController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                        },
+                      ),
+                      SizedBox(height: deviceSize.height * 0.02),
+                      MyFormField(
+                        label: 'Password',
+                        hint: 'Enter your password',
+                        prefixIcon: Icons.lock,
+                        isPassword: isPassword,
+                        controller: passwordController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                        },
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            Icons.remove_red_eye,
+                            color: isPassword ? Colors.grey : Colors.blue,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isPassword = !isPassword;
+                            });
+                          },
+                        ),
+
+                      ),
+                      SizedBox(height: deviceSize.height * 0.02),
+                      MyFormField(
+                        label: 'Re-Password',
+                        hint: 'Enter your password again',
+                        prefixIcon: Icons.lock,
+                        isPassword: isPassword,
+                        controller: repasswordController,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter your password again';
+                          } else if (value != passwordController.text) {
+                            return 'Password not match';
+                          }
+                        },
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            Icons.remove_red_eye,
+                            color: isPassword ? Colors.grey : Colors.blue,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isPassword = !isPassword;
+                            });
+                          },
+                        ),
+
+                        onSubmit: (value) {
+                          if (_formKey.currentState!.validate()) {
+                            cubit.signUp(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              name: nameController.text,
+                            );
+                          }
+                        },
+                      ),
+                      SizedBox(height: deviceSize.height * 0.02),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            cubit.signUp(
+                              email: emailController.text,
+                              password: passwordController.text,
+                              name: nameController.text,
+                            );
+                          }
+                          FocusScope.of(context).unfocus();
+                        },
+                        child: const Text('Sign Up'),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          elevation: 5,
+                          shadowColor: Colors.black,
+                          backgroundColor: const Color(0xff71bbff),
+                          textStyle: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          minimumSize: Size(
+                            deviceSize.width * 1,
+                            deviceSize.height * 0.075,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
