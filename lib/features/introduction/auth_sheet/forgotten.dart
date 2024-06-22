@@ -38,8 +38,6 @@ class _forgottenState extends State<forgotten> {
                 const SizedBox(height: 12),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.blue,
-                    backgroundColor: Colors.white,
                     minimumSize: Size(deviceSize.width * 1, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32.0),

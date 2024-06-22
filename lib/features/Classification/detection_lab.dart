@@ -6,15 +6,14 @@ import 'package:intro_example/features/Classification/result_with_output_of_dete
 import 'package:lottie/lottie.dart';
 import 'package:screenshot/screenshot.dart';
 
-class Result extends StatelessWidget {
-  String lottieAnimationName;
-  double imageMean;
-  double imageStd;
-  int numResults;
-  double threshold;
-  final controllerr = ScreenshotController();
+class Result extends StatefulWidget {
+  final String lottieAnimationName;
+  final double imageMean;
+  final double imageStd;
+  final int numResults;
+  final double threshold;
 
-  Result({
+  const Result({
     Key? key,
     required this.lottieAnimationName,
     required this.imageMean,
@@ -22,6 +21,13 @@ class Result extends StatelessWidget {
     required this.numResults,
     required this.threshold,
   }) : super(key: key);
+
+  @override
+  State<Result> createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
+  final controllerr = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +79,7 @@ class Result extends StatelessWidget {
                             cubit.iimage == null
                                 ? Container(
                                     child: Lottie.asset(
-                                        'assets/lottie_animations/$lottieAnimationName.json'),
+                                        'assets/lottie_animations/${widget.lottieAnimationName}.json'),
                                   )
                                 : Result1(
                                     cubit: cubit,
@@ -150,7 +156,6 @@ class Result extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(100, 50),
-                      backgroundColor: Colors.blue,
                       elevation: 1.5,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -158,10 +163,10 @@ class Result extends StatelessWidget {
                     ),
                     onPressed: () {
                       cubit.pickImage(
-                        imageMean: imageMean,
-                        imageStd: imageStd,
-                        numResults: numResults,
-                        threshold: threshold,
+                        imageMean: widget.imageMean,
+                        imageStd: widget.imageStd,
+                        numResults: widget.numResults,
+                        threshold: widget.threshold,
                       );
                     },
                     child: const Text(

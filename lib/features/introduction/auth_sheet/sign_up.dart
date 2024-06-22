@@ -12,8 +12,7 @@ class Sign_up extends StatefulWidget {
 }
 
 class _Sign_upState extends State<Sign_up> {
-
-   TextEditingController emailController = TextEditingController(),
+  TextEditingController emailController = TextEditingController(),
       nameController = TextEditingController(),
       passwordController = TextEditingController(),
       repasswordController = TextEditingController();
@@ -59,17 +58,17 @@ class _Sign_upState extends State<Sign_up> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                       const Align(
+                      const Align(
                         alignment: Alignment.topLeft,
-                         child: Text(
+                        child: Text(
                           'Sign Up with Email.',
                           style: TextStyle(
                             fontSize: 30,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
                       ),
-                       ),
                       SizedBox(height: deviceSize.height * 0.07),
                       MyFormField(
                         label: 'Name',
@@ -117,7 +116,6 @@ class _Sign_upState extends State<Sign_up> {
                             });
                           },
                         ),
-
                       ),
                       SizedBox(height: deviceSize.height * 0.02),
                       MyFormField(
@@ -144,7 +142,6 @@ class _Sign_upState extends State<Sign_up> {
                             });
                           },
                         ),
-
                         onSubmit: (value) {
                           if (_formKey.currentState!.validate()) {
                             cubit.signUp(
@@ -170,10 +167,8 @@ class _Sign_upState extends State<Sign_up> {
                         },
                         child: const Text('Sign Up'),
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
                           elevation: 5,
                           shadowColor: Colors.black,
-                          backgroundColor: const Color(0xff71bbff),
                           textStyle: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

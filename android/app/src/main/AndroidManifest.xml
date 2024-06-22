@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
    <application
-        android:label="MedCorner"
+        android:label="Mediwise Ai"
         android:requestLegacyExternalStorage="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

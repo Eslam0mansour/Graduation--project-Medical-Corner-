@@ -110,7 +110,7 @@ class HeartDisease extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Medical Corner provides Heart disease ',
+                      'Mediwise Ai provides Heart disease ',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.grey,

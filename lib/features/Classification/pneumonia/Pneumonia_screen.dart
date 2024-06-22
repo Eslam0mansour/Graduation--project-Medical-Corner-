@@ -111,7 +111,7 @@ class PneumoniaScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children:  [
                         const Text(
-                          'Medical Corner provides pneumonia',
+                          'Mediwise Ai provides pneumonia',
                           style: TextStyle(
                             fontSize: 18,
                             color: Colors.grey,
@@ -137,7 +137,7 @@ class PneumoniaScreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Result(
+                                        builder: (context) => const Result(
                                           lottieAnimationName:'pneumonia',
                                           numResults: 1,
                                           threshold: 0.2,
@@ -190,7 +190,7 @@ class PneumoniaScreen extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => lastresult() ,
+                                          builder: (context) => const lastresult() ,
                                         ),
                                       );
                                     },

@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/core/cubit/states.dart';
 import 'package:intro_example/features/News/data_models/News.dart';
+import 'package:intro_example/features/News/news_component.dart';
 import 'package:intro_example/features/Nvdrawer/Nvdrawer.dart';
 import 'package:intro_example/features/custom%20widgets/Disease_card.dart';
-import 'package:intro_example/features/News/news_component.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -166,7 +166,6 @@ class Homepage extends StatelessWidget {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(300, 60),
-                                backgroundColor: Colors.transparent,
                               ),
                               onPressed: () {
                                 showModalBottomSheet(
@@ -202,14 +201,16 @@ class Homepage extends StatelessWidget {
                                               ),
                                               itemBuilder: (context, index) =>
                                                   ItemList(
-                                                artical: mylist.articles![index],
+                                                artical:
+                                                    mylist.articles![index],
                                               ),
                                               separatorBuilder:
                                                   (context, index) =>
                                                       const SizedBox(
                                                 height: 10,
                                               ),
-                                              itemCount: mylist.articles!.length,
+                                              itemCount:
+                                                  mylist.articles!.length,
                                             ),
                                           );
                                         },

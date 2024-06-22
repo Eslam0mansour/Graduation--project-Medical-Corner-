@@ -4,12 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intro_example/core/cubit/cubit.dart';
 import 'package:intro_example/core/cubit/states.dart';
 import 'package:intro_example/features/custom%20widgets/my_form_field.dart';
 import 'package:intro_example/features/introduction/auth_sheet/forgotten.dart';
 import 'package:intro_example/features/introduction/paints/auth_sheet_paint/auth_sheet_paint.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../home.dart';
 
@@ -38,18 +38,36 @@ class _AuthSheetState extends State<AuthSheet> {
 
   final _formKey = GlobalKey<FormState>();
   bool isPassword = true;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<User?> _signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) {
+      return null; // user canceled the sign-in
+    }
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    final UserCredential userCredential =
+        await _auth.signInWithCredential(credential);
+    return userCredential.user;
+  }
 
   Future<void> googleSignIn() async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
+    final googleSignInAccount = await _signInWithGoogle();
 
     if (googleSignInAccount != null) {
       final userr = FirebaseAuth.instance.currentUser;
-      final _store = FirebaseFirestore.instance;
 
       if (userr != null) {
-        _store.collection('users').doc(userr.uid).set({
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userr.uid)
+            .set({
           'name': userr.displayName,
           'uid': userr.uid,
           'email': userr.email,
@@ -57,11 +75,16 @@ class _AuthSheetState extends State<AuthSheet> {
           'imageurl': null,
           'imageurl2': null,
         });
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Homepage()));
       } else {
         print('try later ');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Try again later'),
+          ),
+        );
       }
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const Homepage()));
     }
   }
 
@@ -79,7 +102,8 @@ class _AuthSheetState extends State<AuthSheet> {
           );
         }
         if (state is SignInDoneState) {
-          Navigator.of(context).pushNamedAndRemoveUntil('/Home', (route) => false);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/Home', (route) => false);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               duration: Duration(microseconds: 500),
@@ -210,10 +234,8 @@ class _AuthSheetState extends State<AuthSheet> {
                               },
                               child: const Text('Sign in'),
                               style: ElevatedButton.styleFrom(
-                                foregroundColor: const Color(0xff03045E),
                                 elevation: 5,
                                 shadowColor: Colors.black,
-                                backgroundColor: Colors.white,
                                 textStyle: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -303,8 +325,7 @@ class _AuthSheetState extends State<AuthSheet> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                foregroundColor: Colors.grey,
-                                backgroundColor: Colors.white,
+                                primary: Colors.grey,
                                 maximumSize: const Size(300, 50),
                                 minimumSize: const Size(300, 50),
                               ),

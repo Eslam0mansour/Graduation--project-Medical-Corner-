@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intro_example/core/Network/firebase%20service/auth.dart';
@@ -9,7 +11,6 @@ import 'package:intro_example/core/Network/news%20api%20service/dio_helper.dart'
 import 'package:intro_example/core/cubit/states.dart';
 import 'package:intro_example/features/News/data_models/News.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tflite/tflite.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(IntiAppState());
@@ -17,20 +18,17 @@ class AppCubit extends Cubit<AppState> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   Future loadModel() async {
-    Tflite.close();
     emit(ModelLoadedSTate());
     await Tflite.loadModel(
       model: "assets/tflite_models/model.tflite",
       labels: "assets/tflite_models/labels.txt",
-    ).then((value) {
-      loading = false;
-      emit(ModelLoadedSTate());
-      print('pneumonia model loaded');
-    });
+    );
+    loading = false;
+    emit(ModelLoadedSTate());
+    print('pneumonia model loaded');
   }
 
   Future loadBrainTumourModel() async {
-    Tflite.close();
     emit(ModelLoadedSTate());
     await Tflite.loadModel(
       model: "assets/tflite_models/model_brain_tumour.tflite",
@@ -145,7 +143,8 @@ class AppCubit extends Cubit<AppState> {
       email,
       password,
       name,
-    ).then((value) {
+    )
+        .then((value) {
       getUserData(value!.uid);
       emit(SignUpDoneState());
     }).catchError((error) {
@@ -153,12 +152,15 @@ class AppCubit extends Cubit<AppState> {
       emit(SignUpErrorState(error.toString()));
     });
   }
+
   //get data from firebase
   void getUserData(String uid) async {
     emit(GetUserDataLoadingState());
-    await authBase.getUserData(
+    await authBase
+        .getUserData(
       uid,
-    ).then((value) {
+    )
+        .then((value) {
       user = UserF.fromDocument(value!);
       emit(GetUserDataDoneState());
     }).catchError((error) {
@@ -166,7 +168,6 @@ class AppCubit extends Cubit<AppState> {
       emit(GetUserDataErrorState(error.toString()));
     });
   }
-
 
   void signIn({
     required String email,
@@ -177,7 +178,8 @@ class AppCubit extends Cubit<AppState> {
         .login(
       email,
       password,
-    ).then((value) {
+    )
+        .then((value) {
       if (value != null) {
         getUserData(value.uid);
       }
@@ -197,27 +199,18 @@ class AppCubit extends Cubit<AppState> {
       emit(SignOutErrorState(error.toString()));
     });
   }
+
   double postop = 0.8;
 
-  double? topup(String pos)
-  {
-
-      if (pos == 'up')
-      {
-        postop = 0;
-
-      }
-      else if (pos == 'down')
-      {
-        postop = 0.8;
-
-      }
-      else if (pos == 'upmore')
-      {
-        postop = 0;
-      }
-      else{
-        return null;
-      }
+  double? topup(String pos) {
+    if (pos == 'up') {
+      postop = 0;
+    } else if (pos == 'down') {
+      postop = 0.8;
+    } else if (pos == 'upmore') {
+      postop = 0;
+    } else {
+      return null;
+    }
   }
 }

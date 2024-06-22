@@ -22,7 +22,7 @@ class Nvdrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Medical Corner',
+                    'Mediwise Ai',
                     style: TextStyle(
                       fontSize: 25,
                       color: Color(0xffF2F2F2),
